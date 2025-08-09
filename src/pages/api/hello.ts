@@ -1,13 +1,19 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import express from 'express';
+const app = express();
+import dotenv from 'dotenv';
 
-type Data = {
-  name: string;
-};
+dotenv.config();
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>,
-) {
-  res.status(200).json({ name: "John Doe" });
-}
+import DB from '../../Server/Config/DB.ts';
+
+DB();
+
+const PORT = process.env.PORT || 5000;
+
+app.get('/', (req, res) => {
+    res.send('Welcome to IdeaJam 2.0 Backend');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

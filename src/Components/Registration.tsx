@@ -1,3 +1,303 @@
+// import { motion } from 'framer-motion';
+// import { ArrowRight, User, Mail, Phone, Code } from 'lucide-react';
+// import { Button } from '@/Components/UI/button';
+// import { Input } from '@/Components/UI/input';
+// import { Label } from '@/Components/UI/label';
+// import { useState } from 'react';
+// import GlassCard from './Glasscard';
+
+// const RegistrationSection = () => {
+//   const [formData, setFormData] = useState({
+//     teamName: '',
+//     leaderName: '',
+//     leaderEmail: '',
+//     leaderPhone: '',
+//     member2: '',
+//     member3: '',
+//     member4: '',
+//     techStack: '',
+//     experience: ''
+//   });
+
+//   const handleInputChange = (field: string, value: string) => {
+//     setFormData(prev => ({ ...prev, [field]: value }));
+//   };
+
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     console.log('Form submitted:', formData);
+//     // Handle form submission here
+//   };
+
+//   const registrationSteps = [
+//     {
+//       step: "01",
+//       title: "Form Your Team",
+//       description: "Gather 2-4 passionate individuals from any department"
+//     },
+//     {
+//       step: "02",
+//       title: "Fill Details",
+//       description: "Complete the registration form with team information"
+//     },
+//     {
+//       step: "03",
+//       title: "Get Confirmation",
+//       description: "Receive confirmation email with event details"
+//     },
+//     {
+//       step: "04",
+//       title: "Start Building!",
+//       description: "Attend the opening ceremony and begin your journey"
+//     }
+//   ];
+
+//   return (
+//     <section id="register" className="py-20 px-4">
+//       <div className="max-w-7xl mx-auto">
+//         {/* Section header */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 30 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.8 }}
+//           viewport={{ once: true }}
+//           className="text-center mb-16"
+//         >
+//           <h2 className="text-4xl md:text-5xl font-bold mb-4">
+//             Register <span className="text-[#1cb683]">Now</span>
+//           </h2>
+//           <div className="w-24 h-1 bg-[#1cb683] mx-auto mb-6" />
+//           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+//             Ready to turn your ideas into reality? Join IdeaJam 2025 and be part of the innovation revolution!
+//           </p>
+//         </motion.div>
+
+//         <div className="grid lg:grid-cols-2 gap-12 items-start">
+//           {/* Registration steps */}
+//           <motion.div
+//             initial={{ opacity: 0, x: -30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//           >
+//             <h3 className="text-2xl font-semibold mb-8">How to Register</h3>
+//             <div className="space-y-6">
+//               {registrationSteps.map((step, index) => (
+//                 <motion.div
+//                   key={index}
+//                   initial={{ opacity: 0, y: 20 }}
+//                   whileInView={{ opacity: 1, y: 0 }}
+//                   transition={{ duration: 0.5, delay: index * 0.1 }}
+//                   viewport={{ once: true }}
+//                 >
+//                   <GlassCard className="p-6 flex items-start gap-4 group">
+//                     <div className="w-12 h-12 rounded-full bg-[#1cb683]/20 border-2 border-[#1cb683] flex items-center justify-center text-[#1cb683] font-bold group-hover:shadow-[#1cb683]/30 transition-all duration-300">
+//                       {step.step}
+//                     </div>
+//                     <div>
+//                       <h4 className="font-semibold mb-2">{step.title}</h4>
+//                       <p className="text-gray-400">{step.description}</p>
+//                     </div>
+//                   </GlassCard>
+//                 </motion.div>
+//               ))}
+//             </div>
+
+//             {/* Quick stats */}
+//             <motion.div
+//               initial={{ opacity: 0, y: 20 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.8, delay: 0.4 }}
+//               viewport={{ once: true }}
+//               className="mt-8"
+//             >
+//               <GlassCard className="p-6">
+//                 <h4 className="font-semibold mb-4 text-[#1cb683]">Registration Status</h4>
+//                 <div className="grid grid-cols-2 gap-4 text-center">
+//                   <div>
+//                     <div className="text-2xl font-bold text-[#1cb683]">156</div>
+//                     <div className="text-sm text-gray-400">Registered</div>
+//                   </div>
+//                   <div>
+//                     <div className="text-2xl font-bold text-[#1cb683]">44</div>
+//                     <div className="text-sm text-gray-400">Spots Left</div>
+//                   </div>
+//                 </div>
+//                 <div className="mt-4">
+//                   <div className="w-full bg-gray-700 rounded-full h-2">
+//                     <motion.div
+//                       className="bg-[#1cb683] h-2 rounded-full"
+//                       initial={{ width: 0 }}
+//                       whileInView={{ width: "78%" }}
+//                       transition={{ duration: 1, delay: 0.5 }}
+//                       viewport={{ once: true }}
+//                     />
+//                   </div>
+//                   <p className="text-xs text-gray-400 mt-2">78% capacity filled</p>
+//                 </div>
+//               </GlassCard>
+//             </motion.div>
+//           </motion.div>
+
+//           {/* Registration form */}
+//           <motion.div
+//             initial={{ opacity: 0, x: 30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//           >
+//             <GlassCard className="p-8">
+//               <form onSubmit={handleSubmit} className="space-y-6">
+//                 <div className="text-center mb-6">
+//                   <h3 className="text-2xl font-semibold mb-2">Team Registration</h3>
+//                   <p className="text-gray-400">Fill in your team details to secure your spot</p>
+//                 </div>
+
+//                 {/* Team Leader Information */}
+//                 <div className="space-y-4">
+//                   <h4 className="font-semibold text-[#1cb683]">Team Leader Information</h4>
+                  
+//                   <div className="grid md:grid-cols-2 gap-4">
+//                     <div>
+//                       <Label htmlFor="teamName">Team Name *</Label>
+//                       <Input
+//                         id="teamName"
+//                         placeholder="Enter team name"
+//                         value={formData.teamName}
+//                         onChange={(e) => handleInputChange('teamName', e.target.value)}
+//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                       />
+//                     </div>
+//                     <div>
+//                       <Label htmlFor="leaderName">Leader Name *</Label>
+//                       <Input
+//                         id="leaderName"
+//                         placeholder="Enter full name"
+//                         value={formData.leaderName}
+//                         onChange={(e) => handleInputChange('leaderName', e.target.value)}
+//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                       />
+//                     </div>
+//                   </div>
+
+//                   <div className="grid md:grid-cols-2 gap-4">
+//                     <div>
+//                       <Label htmlFor="leaderEmail">Email Address *</Label>
+//                       <Input
+//                         id="leaderEmail"
+//                         type="email"
+//                         placeholder="Enter email address"
+//                         value={formData.leaderEmail}
+//                         onChange={(e) => handleInputChange('leaderEmail', e.target.value)}
+//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                       />
+//                     </div>
+//                     <div>
+//                       <Label htmlFor="leaderPhone">Phone Number *</Label>
+//                       <Input
+//                         id="leaderPhone"
+//                         placeholder="Enter phone number"
+//                         value={formData.leaderPhone}
+//                         onChange={(e) => handleInputChange('leaderPhone', e.target.value)}
+//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+
+//                 {/* Team Members */}
+//                 <div className="space-y-4">
+//                   <h4 className="font-semibold text-[#1cb683]">Team Members (2-4 total)</h4>
+                  
+//                   <div className="grid md:grid-cols-2 gap-4">
+//                     <div>
+//                       <Label htmlFor="member2">Member 2 *</Label>
+//                       <Input
+//                         id="member2"
+//                         placeholder="Enter member name"
+//                         value={formData.member2}
+//                         onChange={(e) => handleInputChange('member2', e.target.value)}
+//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                       />
+//                     </div>
+//                     <div>
+//                       <Label htmlFor="member3">Member 3</Label>
+//                       <Input
+//                         id="member3"
+//                         placeholder="Enter member name (optional)"
+//                         value={formData.member3}
+//                         onChange={(e) => handleInputChange('member3', e.target.value)}
+//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                       />
+//                     </div>
+//                   </div>
+
+//                   <div>
+//                     <Label htmlFor="member4">Member 4</Label>
+//                     <Input
+//                       id="member4"
+//                       placeholder="Enter member name (optional)"
+//                       value={formData.member4}
+//                       onChange={(e) => handleInputChange('member4', e.target.value)}
+//                       className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                     />
+//                   </div>
+//                 </div>
+
+//                 {/* Additional Information */}
+//                 <div className="space-y-4">
+//                   <h4 className="font-semibold text-[#1cb683]">Additional Information</h4>
+                  
+//                   <div>
+//                     <Label htmlFor="techStack">Preferred Tech Stack</Label>
+//                     <Input
+//                       id="techStack"
+//                       placeholder="e.g., React, Node.js, Python, Flutter"
+//                       value={formData.techStack}
+//                       onChange={(e) => handleInputChange('techStack', e.target.value)}
+//                       className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                     />
+//                   </div>
+
+//                   <div>
+//                     <Label htmlFor="experience">Team Experience Level</Label>
+//                     <Input
+//                       id="experience"
+//                       placeholder="e.g., Beginner, Intermediate, Advanced"
+//                       value={formData.experience}
+//                       onChange={(e) => handleInputChange('experience', e.target.value)}
+//                       className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
+//                     />
+//                   </div>
+//                 </div>
+
+//                 <motion.div
+//                   whileHover={{ scale: 1.02 }}
+//                   whileTap={{ scale: 0.98 }}
+//                 >
+//                   <Button
+//                     type="submit"
+//                     className="w-full py-4 text-lg font-semibold bg-[#1cb683] hover:bg-[#16a076] shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300 group"
+//                   >
+//                     Register Team
+//                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+//                   </Button>
+//                 </motion.div>
+
+//                 <p className="text-xs text-gray-400 text-center">
+//                   By registering, you agree to the hackathon rules and code of conduct.
+//                 </p>
+//               </form>
+//             </GlassCard>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default RegistrationSection;
+
 'use client';
 
 import { useState, useEffect } from 'react';

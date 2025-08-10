@@ -1,43 +1,11 @@
-// import * as React from 'react';
-// import Button from '@mui/material/Button';
-// import SaveIcon from '@mui/icons-material/Save';
-
-// export default function LoadingButtonsTransition() {
-//   const [loading, setLoading] = React.useState(false);
-//   function handleClick() {
-//     setLoading(true);
-//   }
-
-//   return (
-//         <Button
-//           color="secondary"
-//           onClick={handleClick}
-//           loading={loading}
-//           loadingPosition="start"
-//           startIcon={<SaveIcon />}
-//           variant="contained"
-//         >
-//           Save
-//         </Button>
-//   );
-// }
-
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { motion } from 'framer-motion';
 import SaveIcon from '@mui/icons-material/Save';
 
-export default function RegisterNowButton({ disabled, onClick }) {
-  const [loading, setLoading] = React.useState(false);
-
-  const handleClick = () => {
-    setLoading(true);
-    onClick(); // Call the original onClick handler
-  };
-
+export default function RegisterNowButton({ disabled, onClick, loading }) {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className="w-full"
     >
@@ -46,9 +14,7 @@ export default function RegisterNowButton({ disabled, onClick }) {
         fullWidth
         variant="contained"
         disabled={disabled || loading}
-        onClick={handleClick}
-        loading={loading}
-        loadingPosition="start"
+        onClick={onClick}
         startIcon={<SaveIcon />}
         sx={{
           padding: '7px',

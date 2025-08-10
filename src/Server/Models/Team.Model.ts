@@ -32,7 +32,11 @@ const teamSchema = new mongoose.Schema({
     teamMembers: [{
         name: String,
         email: String
-    }]
+    }],
+    pptLink: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true
 });

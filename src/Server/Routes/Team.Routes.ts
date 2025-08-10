@@ -1,4 +1,4 @@
-import { createTeam } from "../Controllers/Team.Controller";
+import { createTeam } from "../Controllers/Team.Controller.ts";
 import express from 'express';
 const router = express.Router();
 

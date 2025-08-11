@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { initLenis } from "@/lib/Lenis";
+import { initLenis } from "@/Lib/Lenis";
 import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {

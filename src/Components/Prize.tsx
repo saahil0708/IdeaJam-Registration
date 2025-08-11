@@ -298,7 +298,7 @@ const PrizesSection = () => {
         </motion.div>
 
         {/* Special prizes */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -352,7 +352,7 @@ const PrizesSection = () => {
               </motion.div>
             ))}
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Additional benefits */}
         <motion.div

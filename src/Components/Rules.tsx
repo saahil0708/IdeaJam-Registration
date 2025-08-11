@@ -205,7 +205,7 @@ const RulesSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="mb-12"
         >
-          <GlassCard className="p-8 hover:shadow-[0_0_40px_-15px_rgba(28,182,131,0.3)] transition-all duration-500">
+          {/* <GlassCard className="p-8 hover:shadow-[0_0_40px_-15px_rgba(28,182,131,0.3)] transition-all duration-500">
             <motion.h3 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -248,7 +248,7 @@ const RulesSection = () => {
                 </motion.div>
               ))}
             </motion.div>
-          </GlassCard>
+          </GlassCard> */}
         </motion.div>
 
         {/* SIH Information */}
@@ -340,7 +340,7 @@ const RulesSection = () => {
         </motion.div>
 
         {/* CTA */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -357,7 +357,7 @@ const RulesSection = () => {
           >
             Register Your Team
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

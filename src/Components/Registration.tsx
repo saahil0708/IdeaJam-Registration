@@ -260,7 +260,7 @@ const IdeaJamRegistration = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4 md:p-8 overflow-x-hidden" id='registration-form'>
+    <div className="min-h-screen bg-gray-900 text-white p-4 md:p-8 overflow-x-hidden mt-10" id='registration-form'>
       {/* Background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
@@ -382,6 +382,7 @@ const IdeaJamRegistration = () => {
                     <MenuItem value="CE" className='font-[Outfit]'>Civil Engineering (CE)</MenuItem>
                     <MenuItem value="BCA" className='font-[Outfit]'>BCA</MenuItem>
                     <MenuItem value="Pharmacy" className='font-[Outfit]'>Pharmacy</MenuItem>
+                    <MenuItem value="Paramedical" className='font-[Outfit]'>Paramedical</MenuItem>
                   </Select>
                 </FormControl>
               </div>

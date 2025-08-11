@@ -771,6 +771,7 @@ const IdeaJamRegistration = () => {
                       sx={{
                         width: '100%',
                         py: 1,
+                        fontFamily: 'Outfit, sans-serif',
                         bgcolor: '#1cb683',
                         '&:hover': { bgcolor: '#16a076' },
                         fontSize: '1rem',

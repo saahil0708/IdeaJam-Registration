@@ -421,6 +421,12 @@ const PrizesSection = () => {
             whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(28, 182, 131, 0.5)" }}
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-[#1cb683] to-[#4dffd1] text-black font-bold py-3 px-8 rounded-full text-lg transition-all duration-300"
+            onClick={() => {
+              const formSection = document.getElementById('registration-form');
+              if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             Register Now
           </motion.button>

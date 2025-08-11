@@ -36,6 +36,7 @@ import {
 } from 'react-icons/fi';
 import axios from 'axios';
 import GlassCard from './Glasscard';
+import SaveIcon from '@mui/icons-material/Save';
 
 interface TeamMember {
   name: string;
@@ -228,6 +229,18 @@ const IdeaJamRegistration = () => {
           }
         );
         setShowSuccess(true);
+        setFormData({
+          teamName: '',
+          leaderName: '',
+          leaderEmail: '',
+          contactNumber: '',
+          department: '',
+          teamSize: '1',
+          description: '',
+          pptLink: '',
+          terms: false,
+          teamMembers: []
+        }); // <-- Reset form fields here
       } catch (error) {
         setErrorMsg('Registration failed. Please try again.');
       }
@@ -247,7 +260,7 @@ const IdeaJamRegistration = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4 md:p-8 overflow-x-hidden">
+    <div className="min-h-screen bg-gray-900 text-white p-4 md:p-8 overflow-x-hidden" id='registration-form'>
       {/* Background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
@@ -754,16 +767,17 @@ const IdeaJamRegistration = () => {
                       type="submit"
                       variant="contained"
                       disabled={!isFormValid()}
+                      startIcon={<SaveIcon />}
                       sx={{
                         width: '100%',
-                        py: 2,
+                        py: 1,
                         bgcolor: '#1cb683',
                         '&:hover': { bgcolor: '#16a076' },
                         fontSize: '1rem',
-                        fontWeight: 'semibold'
+                        fontWeight: 'bold'
                       }}
                     >
-                      {loading ? 'Registering...' : 'Register Team'}
+                      {loading ? 'Registering...' : 'Register'}
                     </Button>
                   </motion.div>
                 </div>

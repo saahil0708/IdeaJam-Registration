@@ -206,7 +206,7 @@ const HeroSection = () => {
         </motion.div>
 
         {/* CTA Buttons with hover effects */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
@@ -241,7 +241,7 @@ const HeroSection = () => {
               <span className="absolute inset-0 bg-[#1cb683]/5 rounded-md scale-90 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </Button>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Event date badge with pulse effect */}
         <motion.div
@@ -250,7 +250,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="mt-12"
         >
-          <motion.div
+          {/* <motion.div
             animate={{
               scale: [1, 1.05, 1],
               boxShadow: [
@@ -263,14 +263,14 @@ const HeroSection = () => {
               duration: 3,
               repeat: Infinity,
             }}
-          >
+          > */}
             <GlassCard className="inline-block px-6 py-3">
               <span className="text-[#1cb683] font-semibold flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 March 15-17, 2025
               </span>
             </GlassCard>
-          </motion.div>
+          {/* </motion.div> */}
         </motion.div>
         
         {/* Scroll indicator */}

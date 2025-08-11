@@ -213,7 +213,7 @@ const IdeaJamRegistration = () => {
     if (isValid) {
       try {
         await axios.post(
-          'http://localhost:5000/teams',
+          'https://idea-jam-server.vercel.app',
           formData, // <-- pass the object, not JSON string
           {
             headers: {

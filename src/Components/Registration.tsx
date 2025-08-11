@@ -868,7 +868,7 @@ const IdeaJamRegistration = () => {
             fontFamily: 'Outfit, sans-serif',
           }}
         >
-          Registration successful! We've sent a confirmation to your email.
+          Registration Successful!.
         </Alert>
       </Snackbar>
 

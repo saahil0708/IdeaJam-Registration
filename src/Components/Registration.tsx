@@ -1,303 +1,3 @@
-// import { motion } from 'framer-motion';
-// import { ArrowRight, User, Mail, Phone, Code } from 'lucide-react';
-// import { Button } from '@/Components/UI/button';
-// import { Input } from '@/Components/UI/input';
-// import { Label } from '@/Components/UI/label';
-// import { useState } from 'react';
-// import GlassCard from './Glasscard';
-
-// const RegistrationSection = () => {
-//   const [formData, setFormData] = useState({
-//     teamName: '',
-//     leaderName: '',
-//     leaderEmail: '',
-//     leaderPhone: '',
-//     member2: '',
-//     member3: '',
-//     member4: '',
-//     techStack: '',
-//     experience: ''
-//   });
-
-//   const handleInputChange = (field: string, value: string) => {
-//     setFormData(prev => ({ ...prev, [field]: value }));
-//   };
-
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     console.log('Form submitted:', formData);
-//     // Handle form submission here
-//   };
-
-//   const registrationSteps = [
-//     {
-//       step: "01",
-//       title: "Form Your Team",
-//       description: "Gather 2-4 passionate individuals from any department"
-//     },
-//     {
-//       step: "02",
-//       title: "Fill Details",
-//       description: "Complete the registration form with team information"
-//     },
-//     {
-//       step: "03",
-//       title: "Get Confirmation",
-//       description: "Receive confirmation email with event details"
-//     },
-//     {
-//       step: "04",
-//       title: "Start Building!",
-//       description: "Attend the opening ceremony and begin your journey"
-//     }
-//   ];
-
-//   return (
-//     <section id="register" className="py-20 px-4">
-//       <div className="max-w-7xl mx-auto">
-//         {/* Section header */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 30 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           viewport={{ once: true }}
-//           className="text-center mb-16"
-//         >
-//           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-//             Register <span className="text-[#1cb683]">Now</span>
-//           </h2>
-//           <div className="w-24 h-1 bg-[#1cb683] mx-auto mb-6" />
-//           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-//             Ready to turn your ideas into reality? Join IdeaJam 2025 and be part of the innovation revolution!
-//           </p>
-//         </motion.div>
-
-//         <div className="grid lg:grid-cols-2 gap-12 items-start">
-//           {/* Registration steps */}
-//           <motion.div
-//             initial={{ opacity: 0, x: -30 }}
-//             whileInView={{ opacity: 1, x: 0 }}
-//             transition={{ duration: 0.8 }}
-//             viewport={{ once: true }}
-//           >
-//             <h3 className="text-2xl font-semibold mb-8">How to Register</h3>
-//             <div className="space-y-6">
-//               {registrationSteps.map((step, index) => (
-//                 <motion.div
-//                   key={index}
-//                   initial={{ opacity: 0, y: 20 }}
-//                   whileInView={{ opacity: 1, y: 0 }}
-//                   transition={{ duration: 0.5, delay: index * 0.1 }}
-//                   viewport={{ once: true }}
-//                 >
-//                   <GlassCard className="p-6 flex items-start gap-4 group">
-//                     <div className="w-12 h-12 rounded-full bg-[#1cb683]/20 border-2 border-[#1cb683] flex items-center justify-center text-[#1cb683] font-bold group-hover:shadow-[#1cb683]/30 transition-all duration-300">
-//                       {step.step}
-//                     </div>
-//                     <div>
-//                       <h4 className="font-semibold mb-2">{step.title}</h4>
-//                       <p className="text-gray-400">{step.description}</p>
-//                     </div>
-//                   </GlassCard>
-//                 </motion.div>
-//               ))}
-//             </div>
-
-//             {/* Quick stats */}
-//             <motion.div
-//               initial={{ opacity: 0, y: 20 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.8, delay: 0.4 }}
-//               viewport={{ once: true }}
-//               className="mt-8"
-//             >
-//               <GlassCard className="p-6">
-//                 <h4 className="font-semibold mb-4 text-[#1cb683]">Registration Status</h4>
-//                 <div className="grid grid-cols-2 gap-4 text-center">
-//                   <div>
-//                     <div className="text-2xl font-bold text-[#1cb683]">156</div>
-//                     <div className="text-sm text-gray-400">Registered</div>
-//                   </div>
-//                   <div>
-//                     <div className="text-2xl font-bold text-[#1cb683]">44</div>
-//                     <div className="text-sm text-gray-400">Spots Left</div>
-//                   </div>
-//                 </div>
-//                 <div className="mt-4">
-//                   <div className="w-full bg-gray-700 rounded-full h-2">
-//                     <motion.div
-//                       className="bg-[#1cb683] h-2 rounded-full"
-//                       initial={{ width: 0 }}
-//                       whileInView={{ width: "78%" }}
-//                       transition={{ duration: 1, delay: 0.5 }}
-//                       viewport={{ once: true }}
-//                     />
-//                   </div>
-//                   <p className="text-xs text-gray-400 mt-2">78% capacity filled</p>
-//                 </div>
-//               </GlassCard>
-//             </motion.div>
-//           </motion.div>
-
-//           {/* Registration form */}
-//           <motion.div
-//             initial={{ opacity: 0, x: 30 }}
-//             whileInView={{ opacity: 1, x: 0 }}
-//             transition={{ duration: 0.8 }}
-//             viewport={{ once: true }}
-//           >
-//             <GlassCard className="p-8">
-//               <form onSubmit={handleSubmit} className="space-y-6">
-//                 <div className="text-center mb-6">
-//                   <h3 className="text-2xl font-semibold mb-2">Team Registration</h3>
-//                   <p className="text-gray-400">Fill in your team details to secure your spot</p>
-//                 </div>
-
-//                 {/* Team Leader Information */}
-//                 <div className="space-y-4">
-//                   <h4 className="font-semibold text-[#1cb683]">Team Leader Information</h4>
-                  
-//                   <div className="grid md:grid-cols-2 gap-4">
-//                     <div>
-//                       <Label htmlFor="teamName">Team Name *</Label>
-//                       <Input
-//                         id="teamName"
-//                         placeholder="Enter team name"
-//                         value={formData.teamName}
-//                         onChange={(e) => handleInputChange('teamName', e.target.value)}
-//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                       />
-//                     </div>
-//                     <div>
-//                       <Label htmlFor="leaderName">Leader Name *</Label>
-//                       <Input
-//                         id="leaderName"
-//                         placeholder="Enter full name"
-//                         value={formData.leaderName}
-//                         onChange={(e) => handleInputChange('leaderName', e.target.value)}
-//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                       />
-//                     </div>
-//                   </div>
-
-//                   <div className="grid md:grid-cols-2 gap-4">
-//                     <div>
-//                       <Label htmlFor="leaderEmail">Email Address *</Label>
-//                       <Input
-//                         id="leaderEmail"
-//                         type="email"
-//                         placeholder="Enter email address"
-//                         value={formData.leaderEmail}
-//                         onChange={(e) => handleInputChange('leaderEmail', e.target.value)}
-//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                       />
-//                     </div>
-//                     <div>
-//                       <Label htmlFor="leaderPhone">Phone Number *</Label>
-//                       <Input
-//                         id="leaderPhone"
-//                         placeholder="Enter phone number"
-//                         value={formData.leaderPhone}
-//                         onChange={(e) => handleInputChange('leaderPhone', e.target.value)}
-//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                       />
-//                     </div>
-//                   </div>
-//                 </div>
-
-//                 {/* Team Members */}
-//                 <div className="space-y-4">
-//                   <h4 className="font-semibold text-[#1cb683]">Team Members (2-4 total)</h4>
-                  
-//                   <div className="grid md:grid-cols-2 gap-4">
-//                     <div>
-//                       <Label htmlFor="member2">Member 2 *</Label>
-//                       <Input
-//                         id="member2"
-//                         placeholder="Enter member name"
-//                         value={formData.member2}
-//                         onChange={(e) => handleInputChange('member2', e.target.value)}
-//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                       />
-//                     </div>
-//                     <div>
-//                       <Label htmlFor="member3">Member 3</Label>
-//                       <Input
-//                         id="member3"
-//                         placeholder="Enter member name (optional)"
-//                         value={formData.member3}
-//                         onChange={(e) => handleInputChange('member3', e.target.value)}
-//                         className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                       />
-//                     </div>
-//                   </div>
-
-//                   <div>
-//                     <Label htmlFor="member4">Member 4</Label>
-//                     <Input
-//                       id="member4"
-//                       placeholder="Enter member name (optional)"
-//                       value={formData.member4}
-//                       onChange={(e) => handleInputChange('member4', e.target.value)}
-//                       className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                     />
-//                   </div>
-//                 </div>
-
-//                 {/* Additional Information */}
-//                 <div className="space-y-4">
-//                   <h4 className="font-semibold text-[#1cb683]">Additional Information</h4>
-                  
-//                   <div>
-//                     <Label htmlFor="techStack">Preferred Tech Stack</Label>
-//                     <Input
-//                       id="techStack"
-//                       placeholder="e.g., React, Node.js, Python, Flutter"
-//                       value={formData.techStack}
-//                       onChange={(e) => handleInputChange('techStack', e.target.value)}
-//                       className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                     />
-//                   </div>
-
-//                   <div>
-//                     <Label htmlFor="experience">Team Experience Level</Label>
-//                     <Input
-//                       id="experience"
-//                       placeholder="e.g., Beginner, Intermediate, Advanced"
-//                       value={formData.experience}
-//                       onChange={(e) => handleInputChange('experience', e.target.value)}
-//                       className="mt-1 bg-white/5 border-white/10 focus:border-[#1cb683]"
-//                     />
-//                   </div>
-//                 </div>
-
-//                 <motion.div
-//                   whileHover={{ scale: 1.02 }}
-//                   whileTap={{ scale: 0.98 }}
-//                 >
-//                   <Button
-//                     type="submit"
-//                     className="w-full py-4 text-lg font-semibold bg-[#1cb683] hover:bg-[#16a076] shadow-lg hover:shadow-[#1cb683]/30 transition-all duration-300 group"
-//                   >
-//                     Register Team
-//                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-//                   </Button>
-//                 </motion.div>
-
-//                 <p className="text-xs text-gray-400 text-center">
-//                   By registering, you agree to the hackathon rules and code of conduct.
-//                 </p>
-//               </form>
-//             </GlassCard>
-//           </motion.div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default RegistrationSection;
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -341,6 +41,7 @@ import {
   FiShield
 } from 'react-icons/fi';
 import axios from 'axios';
+import GlassCard from './Glasscard';
 
 const IdeaJamRegistration = () => {
   const [formData, setFormData] = useState({
@@ -547,488 +248,581 @@ const IdeaJamRegistration = () => {
         <div className="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
       </div>
 
-      <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 z-10">
-        {/* Registration Form Section */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+      <div className="relative max-w-6xl mx-auto">
+        {/* Section Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-gray-800 bg-opacity-50 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-700 shadow-xl"
+          className="text-center mb-12"
         >
-          <div className="mb-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2 text-[#1cb683]">
-              IdeaJam <span className="text-white">2.0</span>
-            </h1>
-            <p className="text-gray-300">Register to showcase your innovative ideas</p>
-          </div>
-
-          <form onSubmit={handleRegister} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <TextField
-                required
-                fullWidth
-                label="Team Name"
-                name="teamName"
-                value={formData.teamName}
-                onChange={handleChange}
-                variant="outlined"
-                error={!!errors.teamName}
-                helperText={errors.teamName || ' '}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: '#374151' },
-                    '&:hover fieldset': { borderColor: '#1cb683' },
-                    '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: 'white',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'white',
-                  },
-                  '& .MuiFormHelperText-root': {
-                    fontFamily: 'Outfit, sans-serif',
-                  }
-                }}
-              />
-
-              <FormControl fullWidth>
-                <InputLabel sx={{
-                  color: 'white',
-                  fontFamily: 'Outfit, sans-serif',
-                  '&.Mui-focused': {
-                    color: 'white',
-                  },
-                }}>
-                  Department
-                </InputLabel>
-                <Select
-                  required
-                  label="Department"
-                  name="department"
-                  value={formData.department}
-                  onChange={handleChange}
-                  error={!!errors.department}
-                  sx={{
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#374151',
-                    },
-                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#1cb683',
-                    },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#1cb683',
-                    },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                    '& .MuiSelect-icon': {
-                      color: 'white',
-                    }
-                  }}
-                >
-                  <MenuItem value="Applied Science" className='font-[Outfit]'>Applied Science</MenuItem>
-                  <MenuItem value="CSE" className='font-[Outfit]'>Computer Science (CSE)</MenuItem>
-                  <MenuItem value="ME" className='font-[Outfit]'>Mechanical Engineering (ME)</MenuItem>
-                  <MenuItem value="ECE" className='font-[Outfit]'>Electronics (ECE)</MenuItem>
-                  <MenuItem value="CE" className='font-[Outfit]'>Civil Engineering (CE)</MenuItem>
-                  <MenuItem value="BCA" className='font-[Outfit]'>BCA</MenuItem>
-                  <MenuItem value="Pharmacy" className='font-[Outfit]'>Pharmacy</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <TextField
-                required
-                fullWidth
-                label="Leader Name"
-                name="leaderName"
-                value={formData.leaderName}
-                onChange={handleChange}
-                variant="outlined"
-                error={!!errors.leaderName}
-                helperText={errors.leaderName || ' '}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: '#374151' },
-                    '&:hover fieldset': { borderColor: '#1cb683' },
-                    '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: 'white',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'white',
-                  },
-                  '& .MuiFormHelperText-root': {
-                    fontFamily: 'Outfit, sans-serif',
-                  }
-                }}
-              />
-
-              <TextField
-                required
-                fullWidth
-                label="Leader Email"
-                name="leaderEmail"
-                type="email"
-                value={formData.leaderEmail}
-                onChange={handleChange}
-                variant="outlined"
-                error={!!errors.leaderEmail}
-                helperText={errors.leaderEmail || ' '}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: '#374151' },
-                    '&:hover fieldset': { borderColor: '#1cb683' },
-                    '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: 'white',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'white',
-                  },
-                  '& .MuiFormHelperText-root': {
-                    fontFamily: 'Outfit, sans-serif',
-                  }
-                }}
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <TextField
-                required
-                fullWidth
-                label="Contact Number"
-                name="contactNumber"
-                value={formData.contactNumber}
-                onChange={handleChange}
-                variant="outlined"
-                error={!!errors.contactNumber}
-                helperText={errors.contactNumber || ' '}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: '#374151' },
-                    '&:hover fieldset': { borderColor: '#1cb683' },
-                    '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: 'white',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'white',
-                  },
-                  '& .MuiFormHelperText-root': {
-                    fontFamily: 'Outfit, sans-serif',
-                  }
-                }}
-              />
-
-              <FormControl fullWidth>
-                <InputLabel sx={{
-                  color: 'white',
-                  fontFamily: 'Outfit, sans-serif',
-                  '&.Mui-focused': {
-                    color: 'white',
-                  },
-                }}>
-                  Team Size
-                </InputLabel>
-                <Select
-                  required
-                  label="Team Size"
-                  name="teamSize"
-                  value={formData.teamSize}
-                  onChange={handleChange}
-                  sx={{
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#374151',
-                    },
-                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#1cb683',
-                    },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      borderColor: '#1cb683',
-                    },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                    '& .MuiSelect-icon': {
-                      color: 'white',
-                    }
-                  }}
-                >
-                  <MenuItem value="1" className='font-[Outfit]'>Solo (1)</MenuItem>
-                  <MenuItem value="2" className='font-[Outfit]'>2 Members</MenuItem>
-                  <MenuItem value="3" className='font-[Outfit]'>3 Members</MenuItem>
-                  <MenuItem value="4" className='font-[Outfit]'>4 Members</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-
-            {/* Dynamic team member fields */}
-            <AnimatePresence>
-              {formData.teamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-4"
-                >
-                  <div className="flex justify-between items-center mt-4">
-                    <Typography variant="subtitle2" className="text-[#1cb683]">
-                      Team Member {index + 1}
-                    </Typography>
-                    {index === formData.teamMembers.length - 1 && (
-                      <Tooltip title="Remove member">
-                        <IconButton
-                          size="small"
-                          onClick={() => setFormData(prev => ({
-                            ...prev,
-                            teamSize: (parseInt(prev.teamSize) - 1).toString()
-                          }))}
-                        >
-                          <FiX className="text-red-400" />
-                        </IconButton>
-                      </Tooltip>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <TextField
-                      fullWidth
-                      label={`Member ${index + 1} Name`}
-                      value={member.name}
-                      onChange={(e) => handleTeamMemberChange(index, 'name', e.target.value)}
-                      variant="outlined"
-                      error={!!errors[`teamMember${index}name`]}
-                      helperText={errors[`teamMember${index}name`] || ' '}
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          '& fieldset': { borderColor: '#374151' },
-                          '&:hover fieldset': { borderColor: '#1cb683' },
-                          '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                          color: 'white',
-                          borderRadius: '0.45rem',
-                          backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                          fontFamily: 'Outfit, sans-serif',
-                        },
-                        '& .MuiInputLabel-root': {
-                          color: 'white',
-                          fontFamily: 'Outfit, sans-serif',
-                        },
-                        '& .MuiInputLabel-root.Mui-focused': {
-                          color: 'white',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          fontFamily: 'Outfit, sans-serif',
-                        }
-                      }}
-                    />
-
-                    <TextField
-                      fullWidth
-                      label={`Member ${index + 1} Email`}
-                      type="email"
-                      value={member.email}
-                      onChange={(e) => handleTeamMemberChange(index, 'email', e.target.value)}
-                      variant="outlined"
-                      error={!!errors[`teamMember${index}email`]}
-                      helperText={errors[`teamMember${index}email`] || ' '}
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          '& fieldset': { borderColor: '#374151' },
-                          '&:hover fieldset': { borderColor: '#1cb683' },
-                          '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                          color: 'white',
-                          borderRadius: '0.45rem',
-                          backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                          fontFamily: 'Outfit, sans-serif',
-                        },
-                        '& .MuiInputLabel-root': {
-                          color: 'white',
-                          fontFamily: 'Outfit, sans-serif',
-                        },
-                        '& .MuiInputLabel-root.Mui-focused': {
-                          color: 'white',
-                        },
-                        '& .MuiFormHelperText-root': {
-                          fontFamily: 'Outfit, sans-serif',
-                        }
-                      }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {parseInt(formData.teamSize) < 4 && (
-              <motion.div
-                className="flex justify-end"
-                whileHover={{ scale: 1.02 }}
-              >
-                <Button
-                  variant="outlined"
-                  startIcon={<FiPlus />}
-                  onClick={() => setFormData(prev => ({
-                    ...prev,
-                    teamSize: (parseInt(prev.teamSize) + 1).toString()
-                  }))}
-                  sx={{
-                    color: '#1cb683',
-                    borderColor: '#1cb683',
-                    '&:hover': {
-                      borderColor: '#1cb683',
-                      backgroundColor: 'rgba(28, 182, 131, 0.1)'
-                    },
-                    fontFamily: 'Outfit, sans-serif',
-                    textTransform: 'none',
-                    borderRadius: '0.45rem'
-                  }}
-                >
-                  Add Member
-                </Button>
-              </motion.div>
-            )}
-
-            <TextField
-              fullWidth
-              variant="outlined"
-              label="Brief Idea Description (Max 200 chars)"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              multiline
-              rows={4}
-              error={!!errors.description}
-              helperText={errors.description || ' '}
-              inputProps={{ maxLength: 200 }}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#374151' },
-                  '&:hover fieldset': { borderColor: '#1cb683' },
-                  '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                  color: 'white',
-                  borderRadius: '0.45rem',
-                  backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                  fontFamily: 'Outfit, sans-serif',
-                },
-                '& .MuiInputLabel-root': {
-                  color: 'white',
-                  fontFamily: 'Outfit, sans-serif',
-                },
-                '& .MuiInputLabel-root.Mui-focused': {
-                  color: 'white',
-                },
-                '& .MuiFormHelperText-root': {
-                  fontFamily: 'Outfit, sans-serif',
-                }
-              }}
-            />
-
-            <div className="space-y-2">
-              <Typography variant="body2" className="text-gray-300 flex items-center font-[Outfit]" sx={{fontFamily: "Outfit"}}>
-                <FiInfo className="mr-2 text-[#1cb683]" />Upload your presentation to Google Drive/Dropbox and share the link
-              </Typography>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="PPT/PDF Link"
-                name="pptLink"
-                value={formData.pptLink}
-                onChange={handleChange}
-                error={!!errors.pptLink}
-                helperText={errors.pptLink || ' '}
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: '#374151' },
-                    '&:hover fieldset': { borderColor: '#1cb683' },
-                    '&.Mui-focused fieldset': { borderColor: '#1cb683' },
-                    color: 'white',
-                    borderRadius: '0.45rem',
-                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: 'white',
-                    fontFamily: 'Outfit, sans-serif',
-                  },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'white',
-                  },
-                  '& .MuiFormHelperText-root': {
-                    fontFamily: 'Outfit, sans-serif',
-                  }
-                }}
-              />
-            </div>
-
-            <div className="flex flex-col space-y-4">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="terms"
-                    checked={formData.terms}
-                    onChange={handleChange}
-                    required
-                    sx={{
-                      color: '#1cb683',
-                      '&.Mui-checked': {
-                        color: '#1cb683',
-                      },
-                    }}
-                  />
-                }
-                label={
-                  <span className="text-gray-300">
-                    I agree to the terms and conditions of IdeaJam 2.0
-                  </span>
-                }
-              />
-
-              <div className="flex justify-center">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full md:w-1/2"
-                >
-                  <Register disabled={!isFormValid()} onClick={handleRegister} loading={loading} />
-                </motion.div>
-              </div>
-            </div>
-          </form>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1cb683] to-[#4dffd1]">
+            IdeaJam <span className="text-white">2.0</span> Registration
+          </h1>
+          <motion.div
+            className="w-24 h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto mb-6"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            viewport={{ once: true }}
+          />
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Register your team for the most exciting hackathon of the year! 
+            <br />Showcase your innovative ideas and compete for amazing prizes.
+          </p>
         </motion.div>
 
-        {/* Enhanced Info Section */}
-        {/* Info Section - Redesigned to match form styling */}
-        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 z-10">
+          {/* Registration Form Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-800 bg-opacity-50 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-700 shadow-xl"
+          >
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-2 text-[#1cb683]">Team Registration Form</h2>
+              <p className="text-gray-400">Fill in all required details to secure your spot</p>
+            </div>
+
+            <form onSubmit={handleRegister} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <TextField
+                  required
+                  fullWidth
+                  label="Team Name"
+                  name="teamName"
+                  value={formData.teamName}
+                  onChange={handleChange}
+                  variant="outlined"
+                  error={!!errors.teamName}
+                  helperText={errors.teamName || ' '}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': { borderColor: '#374151' },
+                      '&:hover fieldset': { borderColor: '#1cb683' },
+                      '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'white',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: 'white',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      fontFamily: 'Outfit, sans-serif',
+                    }
+                  }}
+                />
+
+                <FormControl fullWidth>
+                  <InputLabel sx={{
+                    color: 'white',
+                    fontFamily: 'Outfit, sans-serif',
+                    '&.Mui-focused': {
+                      color: 'white',
+                    },
+                  }}>
+                    Department
+                  </InputLabel>
+                  <Select
+                    required
+                    label="Department"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}
+                    error={!!errors.department}
+                    sx={{
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#374151',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#1cb683',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#1cb683',
+                      },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                      '& .MuiSelect-icon': {
+                        color: 'white',
+                      }
+                    }}
+                  >
+                    <MenuItem value="Applied Science" className='font-[Outfit]'>Applied Science</MenuItem>
+                    <MenuItem value="CSE" className='font-[Outfit]'>Computer Science (CSE)</MenuItem>
+                    <MenuItem value="ME" className='font-[Outfit]'>Mechanical Engineering (ME)</MenuItem>
+                    <MenuItem value="ECE" className='font-[Outfit]'>Electronics (ECE)</MenuItem>
+                    <MenuItem value="CE" className='font-[Outfit]'>Civil Engineering (CE)</MenuItem>
+                    <MenuItem value="BCA" className='font-[Outfit]'>BCA</MenuItem>
+                    <MenuItem value="Pharmacy" className='font-[Outfit]'>Pharmacy</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <TextField
+                  required
+                  fullWidth
+                  label="Leader Name"
+                  name="leaderName"
+                  value={formData.leaderName}
+                  onChange={handleChange}
+                  variant="outlined"
+                  error={!!errors.leaderName}
+                  helperText={errors.leaderName || ' '}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': { borderColor: '#374151' },
+                      '&:hover fieldset': { borderColor: '#1cb683' },
+                      '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'white',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: 'white',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      fontFamily: 'Outfit, sans-serif',
+                    }
+                  }}
+                />
+
+                <TextField
+                  required
+                  fullWidth
+                  label="Leader Email"
+                  name="leaderEmail"
+                  type="email"
+                  value={formData.leaderEmail}
+                  onChange={handleChange}
+                  variant="outlined"
+                  error={!!errors.leaderEmail}
+                  helperText={errors.leaderEmail || ' '}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': { borderColor: '#374151' },
+                      '&:hover fieldset': { borderColor: '#1cb683' },
+                      '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'white',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: 'white',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      fontFamily: 'Outfit, sans-serif',
+                    }
+                  }}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <TextField
+                  required
+                  fullWidth
+                  label="Contact Number"
+                  name="contactNumber"
+                  value={formData.contactNumber}
+                  onChange={handleChange}
+                  variant="outlined"
+                  error={!!errors.contactNumber}
+                  helperText={errors.contactNumber || ' '}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': { borderColor: '#374151' },
+                      '&:hover fieldset': { borderColor: '#1cb683' },
+                      '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'white',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: 'white',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      fontFamily: 'Outfit, sans-serif',
+                    }
+                  }}
+                />
+
+                <FormControl fullWidth>
+                  <InputLabel sx={{
+                    color: 'white',
+                    fontFamily: 'Outfit, sans-serif',
+                    '&.Mui-focused': {
+                      color: 'white',
+                    },
+                  }}>
+                    Team Size
+                  </InputLabel>
+                  <Select
+                    required
+                    label="Team Size"
+                    name="teamSize"
+                    value={formData.teamSize}
+                    onChange={handleChange}
+                    sx={{
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#374151',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#1cb683',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#1cb683',
+                      },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                      '& .MuiSelect-icon': {
+                        color: 'white',
+                      }
+                    }}
+                  >
+                    <MenuItem value="1" className='font-[Outfit]'>Solo (1)</MenuItem>
+                    <MenuItem value="2" className='font-[Outfit]'>2 Members</MenuItem>
+                    <MenuItem value="3" className='font-[Outfit]'>3 Members</MenuItem>
+                    <MenuItem value="4" className='font-[Outfit]'>4 Members</MenuItem>
+                    <MenuItem value="5" className='font-[Outfit]'>5 Members</MenuItem>
+                    <MenuItem value="6" className='font-[Outfit]'>6 Members</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+
+              {/* Dynamic team member fields */}
+              <AnimatePresence>
+                {formData.teamMembers.map((member, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
+                    <div className="flex justify-between items-center mt-4">
+                      <Typography variant="subtitle2" className="text-[#1cb683]">
+                        Team Member {index + 1}
+                      </Typography>
+                      {index === formData.teamMembers.length - 1 && (
+                        <Tooltip title="Remove member">
+                          <IconButton
+                            size="small"
+                            onClick={() => setFormData(prev => ({
+                              ...prev,
+                              teamSize: (parseInt(prev.teamSize) - 1).toString()
+                            }))}
+                          >
+                            <FiX className="text-red-400" />
+                          </IconButton>
+                        </Tooltip>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <TextField
+                        fullWidth
+                        label={`Member ${index + 1} Name`}
+                        value={member.name}
+                        onChange={(e) => handleTeamMemberChange(index, 'name', e.target.value)}
+                        variant="outlined"
+                        error={!!errors[`teamMember${index}name`]}
+                        helperText={errors[`teamMember${index}name`] || ' '}
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            '& fieldset': { borderColor: '#374151' },
+                            '&:hover fieldset': { borderColor: '#1cb683' },
+                            '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                            color: 'white',
+                            borderRadius: '0.45rem',
+                            backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                            fontFamily: 'Outfit, sans-serif',
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: 'white',
+                            fontFamily: 'Outfit, sans-serif',
+                          },
+                          '& .MuiInputLabel-root.Mui-focused': {
+                            color: 'white',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            fontFamily: 'Outfit, sans-serif',
+                          }
+                        }}
+                      />
+
+                      <TextField
+                        fullWidth
+                        label={`Member ${index + 1} Email`}
+                        type="email"
+                        value={member.email}
+                        onChange={(e) => handleTeamMemberChange(index, 'email', e.target.value)}
+                        variant="outlined"
+                        error={!!errors[`teamMember${index}email`]}
+                        helperText={errors[`teamMember${index}email`] || ' '}
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            '& fieldset': { borderColor: '#374151' },
+                            '&:hover fieldset': { borderColor: '#1cb683' },
+                            '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                            color: 'white',
+                            borderRadius: '0.45rem',
+                            backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                            fontFamily: 'Outfit, sans-serif',
+                          },
+                          '& .MuiInputLabel-root': {
+                            color: 'white',
+                            fontFamily: 'Outfit, sans-serif',
+                          },
+                          '& .MuiInputLabel-root.Mui-focused': {
+                            color: 'white',
+                          },
+                          '& .MuiFormHelperText-root': {
+                            fontFamily: 'Outfit, sans-serif',
+                          }
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {parseInt(formData.teamSize) < 6 && (
+                <motion.div
+                  className="flex justify-end"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Button
+                    variant="outlined"
+                    startIcon={<FiPlus />}
+                    onClick={() => setFormData(prev => ({
+                      ...prev,
+                      teamSize: (parseInt(prev.teamSize) + 1).toString()
+                    }))}
+                    sx={{
+                      color: '#1cb683',
+                      borderColor: '#1cb683',
+                      '&:hover': {
+                        borderColor: '#1cb683',
+                        backgroundColor: 'rgba(28, 182, 131, 0.1)'
+                      },
+                      fontFamily: 'Outfit, sans-serif',
+                      textTransform: 'none',
+                      borderRadius: '0.45rem'
+                    }}
+                  >
+                    Add Member
+                  </Button>
+                </motion.div>
+              )}
+
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Brief Idea Description (Max 200 chars)"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+                multiline
+                rows={4}
+                error={!!errors.description}
+                helperText={errors.description || ' '}
+                inputProps={{ maxLength: 200 }}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': { borderColor: '#374151' },
+                    '&:hover fieldset': { borderColor: '#1cb683' },
+                    '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                    color: 'white',
+                    borderRadius: '0.45rem',
+                    backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                    fontFamily: 'Outfit, sans-serif',
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'white',
+                    fontFamily: 'Outfit, sans-serif',
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'white',
+                  },
+                  '& .MuiFormHelperText-root': {
+                    fontFamily: 'Outfit, sans-serif',
+                  }
+                }}
+              />
+
+              <div className="space-y-2">
+                <Typography variant="body2" className="text-gray-300 flex items-center font-[Outfit]" sx={{fontFamily: "Outfit"}}>
+                  <FiInfo className="mr-2 text-[#1cb683]" />Upload your presentation to Google Drive/Dropbox and share the link
+                </Typography>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  label="PPT/PDF Link"
+                  name="pptLink"
+                  value={formData.pptLink}
+                  onChange={handleChange}
+                  error={!!errors.pptLink}
+                  helperText={errors.pptLink || ' '}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': { borderColor: '#374151' },
+                      '&:hover fieldset': { borderColor: '#1cb683' },
+                      '&.Mui-focused fieldset': { borderColor: '#1cb683' },
+                      color: 'white',
+                      borderRadius: '0.45rem',
+                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: 'white',
+                      fontFamily: 'Outfit, sans-serif',
+                    },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: 'white',
+                    },
+                    '& .MuiFormHelperText-root': {
+                      fontFamily: 'Outfit, sans-serif',
+                    }
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-col space-y-4">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="terms"
+                      checked={formData.terms}
+                      onChange={handleChange}
+                      required
+                      sx={{
+                        color: '#1cb683',
+                        '&.Mui-checked': {
+                          color: '#1cb683',
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span className="text-gray-300">
+                      I agree to the terms and conditions of IdeaJam 2.0
+                    </span>
+                  }
+                />
+
+                <div className="flex justify-center">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full md:w-1/2"
+                  >
+                    <Register disabled={!isFormValid()} onClick={handleRegister} loading={loading} />
+                  </motion.div>
+                </div>
+              </div>
+            </form>
+          </motion.div>
+
+          {/* Information Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <GlassCard className="p-6 border border-[#1cb683]/30">
+              <div className="flex items-center gap-3 mb-4">
+                <FiInfo className="w-6 h-6 text-[#1cb683]" />
+                <h3 className="text-xl font-bold">Important Information</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2">
+                  <FiClock className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Registration Deadline: March 10, 2025</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiCalendar className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Event Date: March 15-17, 2025</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiUsers className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Team Size: 1-6 members (all from same institution)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiAward className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Prizes worth ₹50,000+</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiShield className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Winning teams qualify for Smart India Hackathon</span>
+                </li>
+              </ul>
+            </GlassCard>
+
+            <GlassCard className="p-6 border border-[#1cb683]/30">
+              <div className="flex items-center gap-3 mb-4">
+                <FiBriefcase className="w-6 h-6 text-[#1cb683]" />
+                <h3 className="text-xl font-bold">What You Need</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2">
+                  <FiUser className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Basic information about all team members</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiLink className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Link to your presentation (PPT/PDF)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiUpload className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Optional: Demo video link (max 5 minutes)</span>
+                </li>
+              </ul>
+            </GlassCard>
+
+            <GlassCard className="p-6 border border-[#1cb683]/30">
+              <div className="flex items-center gap-3 mb-4">
+                <FiDollarSign className="w-6 h-6 text-[#1cb683]" />
+                <h3 className="text-xl font-bold">Participation Benefits</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300">
+                <li>Networking with industry professionals</li>
+                <li>Mentorship from tech experts</li>
+                <li>Chance to win cash prizes and internships</li>
+                <li>Certificate of participation for all attendees</li>
+                <li>Opportunity to represent at national level (SIH)</li>
+              </ul>
+            </GlassCard>
+          </motion.div>
+        </div>
       </div>
 
       {/* Floating particles for extra effect */}

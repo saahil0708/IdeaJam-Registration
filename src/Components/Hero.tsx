@@ -156,24 +156,17 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        {/* Subtitle with typing effect */}
+        {/* Subtitle - Fixed text without typewriter effect */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto min-h-[72px]"
+          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
         >
-          <TypewriterEffect 
-            text="The Ultimate Innovation Challenge"
-            delay={1000}
-            className="text-xl md:text-2xl"
-          />
-          <br />
-          <TypewriterEffect 
-            text="Innovation • Collaboration • Excellence"
-            delay={1800}
-            className="text-[#1cb683] text-xl md:text-2xl"
-          />
+          <div className="text-xl md:text-2xl">The Ultimate Innovation Challenge</div>
+          <div className="text-[#1cb683] text-xl md:text-2xl mt-2">
+            Innovation • Collaboration • Excellence
+          </div>
         </motion.div>
 
         {/* Quick stats with scroll-triggered animations */}
@@ -199,7 +192,7 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
             >
               <GlassCard 
-                className="p-6 text-center group hover:scale-105 transition-transform duration-300 relative overflow-hidden"
+                className="p-6 text-center group transition-transform duration-300 relative overflow-hidden"
                 whileHover={{ boxShadow: "0 0 20px rgba(28, 182, 131, 0.5)" }}
               >
                 <div className="absolute inset-0 bg-[#1cb683] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
@@ -296,31 +289,6 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
-
-// Typewriter effect component
-const TypewriterEffect = ({ text, delay = 0, className = '' }: { text: string, delay?: number, className?: string }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  
-  useEffect(() => {
-    let i = 0;
-    const typingEffect = setTimeout(() => {
-      const intervalId = setInterval(() => {
-        if (i < text.length) {
-          setDisplayedText(prev => prev + text.charAt(i));
-          i++;
-        } else {
-          clearInterval(intervalId);
-        }
-      }, 50);
-      
-      return () => clearInterval(intervalId);
-    }, delay);
-    
-    return () => clearTimeout(typingEffect);
-  }, [text, delay]);
-
-  return <span className={className}>{displayedText}</span>;
 };
 
 export default HeroSection;

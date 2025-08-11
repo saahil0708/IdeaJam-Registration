@@ -173,7 +173,7 @@ const PrizesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1cb683] to-[#4dffd1]">
-            Exciting Prizes Await
+            <span className='text-white'>Exciting</span> Prizes Await
           </h2>
           <motion.div
             className="w-24 h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto mb-6"

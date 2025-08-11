@@ -220,7 +220,7 @@ const IdeaJamRegistration = () => {
     if (isValid) {
       try {
         await axios.post(
-          'https://idea-jam-server.vercel.app',
+          'https://idea-jam-server.vercel.app/teams',
           formData,
           {
             headers: {

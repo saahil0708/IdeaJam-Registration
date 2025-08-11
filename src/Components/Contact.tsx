@@ -5,27 +5,27 @@ import GlassCard from './Glasscard';
 const ContactSection = () => {
   const organizers = [
     {
-      name: "Alex Johnson",
+      name: "SAAHIL",
       role: "Lead Organizer",
-      email: "alex.johnson@college.edu",
-      phone: "+91 98765 43210",
-      avatar: "AJ",
+      email: "saahil.ind.dgp@gmail.com",
+      phone: "+91 94741 56798",
+      avatar: "S",
       availability: "Mon-Fri, 10AM-6PM"
     },
     {
-      name: "Sarah Kim",
+      name: "KSHITIJ RAJ",
       role: "Technical Coordinator",
       email: "sarah.kim@college.edu",
       phone: "+91 98765 43211",
-      avatar: "SK",
+      avatar: "KS",
       availability: "Mon-Wed, 1PM-8PM"
     },
     {
-      name: "Mike Chen",
+      name: "TANIYA SINGH",
       role: "Registration Head",
       email: "mike.chen@college.edu",
       phone: "+91 98765 43212",
-      avatar: "MC",
+      avatar: "TS",
       availability: "Tue-Thu, 9AM-4PM"
     }
   ];
@@ -65,22 +65,22 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "ideajam2025@college.edu",
+      value: "team.theuniques@sviet.ac.in",
       description: "For general inquiries and support",
       action: "Send us a message"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+91 98765 43200",
+      value: "+91 94741 56798",
       description: "Call during business hours",
       action: "Call now"
     },
     {
       icon: MapPin,
       title: "Venue",
-      value: "Main Campus, Computer Science Building",
-      description: "Room 101-105, Tech University",
+      value: "The Uniques, C - Block",
+      description: "",
       action: "Get directions"
     }
   ];
@@ -279,10 +279,10 @@ const ContactSection = () => {
               
               <div className="text-center md:text-right">
                 <p className="text-gray-400">
-                  © 2025 Tech University. All rights reserved.
+                  © 2025 The Uniques. All rights reserved.
                 </p>
-                <p className="text-sm text-gray-500">
-                  Made with <span className="text-[#1cb683]">❤️</span> by the IdeaJam Team
+                <p className="text-sm text-gray-300 font-semibold">
+                  Made with <span className="text-[#1cb683]">❤️</span> by Tech Team (Uniques 3.0)
                 </p>
               </div>
             </div>

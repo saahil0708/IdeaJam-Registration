@@ -193,7 +193,7 @@ const HeroSection = () => {
             >
               <GlassCard 
                 className="p-6 text-center group transition-transform duration-300 relative overflow-hidden"
-                whileHover={{ boxShadow: "0 0 20px rgba(28, 182, 131, 0.5)" }}
+                // whileHover={{ boxShadow: "0 0 20px rgba(28, 182, 131, 0.5)" }}
               >
                 <div className="absolute inset-0 bg-[#1cb683] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 <stat.icon className="w-8 h-8 text-[#1cb683] mx-auto mb-2 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_#1cb683] transition-all duration-300" />

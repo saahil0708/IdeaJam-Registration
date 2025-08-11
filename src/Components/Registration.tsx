@@ -15,13 +15,7 @@ import {
   Tooltip,
   Snackbar,
   Alert,
-  Chip,
-  Divider,
-  Card,
-  CardContent
 } from '@mui/material';
-import Logo from '@/Images/IJ_Logo.png';
-import Register from '@/Utils/RegisterNowButton';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiUser,
@@ -43,8 +37,26 @@ import {
 import axios from 'axios';
 import GlassCard from './Glasscard';
 
+interface TeamMember {
+  name: string;
+  email: string;
+}
+
+interface FormData {
+  teamName: string;
+  leaderName: string;
+  leaderEmail: string;
+  contactNumber: string;
+  department: string;
+  teamSize: string;
+  description: string;
+  pptLink: string;
+  terms: boolean;
+  teamMembers: TeamMember[];
+}
+
 const IdeaJamRegistration = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     teamName: '',
     leaderName: '',
     leaderEmail: '',
@@ -59,39 +71,35 @@ const IdeaJamRegistration = () => {
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Initialize team members array based on team size
     const size = parseInt(formData.teamSize);
     if (size > 1) {
       const neededMembers = size - 1;
       const currentMembers = formData.teamMembers.length;
 
       if (currentMembers < neededMembers) {
-        // Add missing members
         const newMembers = [...formData.teamMembers];
         for (let i = currentMembers; i < neededMembers; i++) {
           newMembers.push({ name: '', email: '' });
         }
         setFormData(prev => ({ ...prev, teamMembers: newMembers }));
       } else if (currentMembers > neededMembers) {
-        // Remove extra members
         setFormData(prev => ({
           ...prev,
           teamMembers: prev.teamMembers.slice(0, neededMembers)
         }));
       }
     } else {
-      // Solo team - clear members
       if (formData.teamMembers.length > 0) {
         setFormData(prev => ({ ...prev, teamMembers: [] }));
       }
     }
   }, [formData.teamSize]);
 
-  const validateField = (name, value) => {
+  const validateField = (name: string, value: string) => {
     let error = '';
 
     switch (name) {
@@ -142,10 +150,10 @@ const IdeaJamRegistration = () => {
     return error;
   };
 
-  const handleChange = (e) => {
-    const { name, value, checked, type } = e.target;
+  const handleChange = (e: any) => {
+    const { name, value, type } = e.target as HTMLInputElement;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
 
-    // Validate field
     const error = validateField(name, value);
     setErrors(prev => ({
       ...prev,
@@ -158,11 +166,10 @@ const IdeaJamRegistration = () => {
     }));
   };
 
-  const handleTeamMemberChange = (index, field, value) => {
+  const handleTeamMemberChange = (index: number, field: keyof TeamMember, value: string) => {
     const updatedMembers = [...formData.teamMembers];
     updatedMembers[index][field] = value;
 
-    // Validate field
     const fieldName = `teamMember${index}${field}`;
     const error = validateField(fieldName, value);
     setErrors(prev => ({
@@ -176,16 +183,15 @@ const IdeaJamRegistration = () => {
     }));
   };
 
-  const handleRegister = async (e) => {
-    if (e && e.preventDefault) e.preventDefault();
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
 
-    // Final validation (reuse handleSubmit logic)
     let isValid = true;
-    const newErrors = {};
+    const newErrors: Record<string, string> = {};
 
     ['teamName', 'leaderName', 'leaderEmail', 'contactNumber', 'department', 'description'].forEach(field => {
-      const error = validateField(field, formData[field]);
+      const error = validateField(field, formData[field as keyof FormData] as string);
       if (error) {
         newErrors[field] = error;
         isValid = false;
@@ -193,7 +199,7 @@ const IdeaJamRegistration = () => {
     });
 
     formData.teamMembers.forEach((member, index) => {
-      ['name', 'email'].forEach(field => {
+      (['name', 'email'] as Array<keyof TeamMember>).forEach(field => {
         const fieldName = `teamMember${index}${field}`;
         const error = validateField(fieldName, member[field]);
         if (error) {
@@ -214,7 +220,7 @@ const IdeaJamRegistration = () => {
       try {
         await axios.post(
           'https://idea-jam-server.vercel.app',
-          formData, // <-- pass the object, not JSON string
+          formData,
           {
             headers: {
               'Content-Type': 'application/json'
@@ -226,7 +232,7 @@ const IdeaJamRegistration = () => {
         setErrorMsg('Registration failed. Please try again.');
       }
     }
-    setLoading(false); // Reset loading state after request
+    setLoading(false);
   };
 
   const isFormValid = () => {
@@ -242,14 +248,14 @@ const IdeaJamRegistration = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4 md:p-8 overflow-x-hidden">
-      {/* Glowing background elements */}
+      {/* Background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
         <div className="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -273,7 +279,7 @@ const IdeaJamRegistration = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 z-10">
-          {/* Registration Form Section */}
+          {/* Form Section */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -744,7 +750,21 @@ const IdeaJamRegistration = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full md:w-1/2"
                   >
-                    <Register disabled={!isFormValid()} onClick={handleRegister} loading={loading} />
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      disabled={!isFormValid()}
+                      sx={{
+                        width: '100%',
+                        py: 2,
+                        bgcolor: '#1cb683',
+                        '&:hover': { bgcolor: '#16a076' },
+                        fontSize: '1rem',
+                        fontWeight: 'semibold'
+                      }}
+                    >
+                      {loading ? 'Registering...' : 'Register Team'}
+                    </Button>
                   </motion.div>
                 </div>
               </div>

@@ -5,14 +5,6 @@ import GlassCard from './Glasscard';
 const ContactSection = () => {
   const organizers = [
     {
-      name: "TANIYA SINGH",
-      role: "Coordinator",
-      email: "mike.chen@college.edu",
-      phone: "+91 98765 43212",
-      avatar: "TS",
-      availability: "Tue-Thu, 9AM-4PM"
-    },
-    {
       name: "SAAHIL",
       role: "Lead Organizer",
       email: "saahil.ind.dgp@gmail.com",
@@ -35,30 +27,17 @@ const ContactSection = () => {
     { 
       icon: Instagram, 
       label: "Instagram", 
-      url: "#", 
+      url: "https://www.instagram.com/theuniquesofficial?igsh=MWJ0djEyOW5ucXFz", 
       color: "#E4405F",
       handle: "@ideajam2025"
     },
-    { 
-      icon: Twitter, 
-      label: "Twitter", 
-      url: "#", 
-      color: "#1DA1F2",
-      handle: "@ideajam_hack"
-    },
+    
     { 
       icon: Linkedin, 
       label: "LinkedIn", 
-      url: "#", 
+      url: "https://www.linkedin.com/company/theuniquesofflicial/", 
       color: "#0077B5",
       handle: "IdeaJam Hackathon"
-    },
-    { 
-      icon: MessageCircle, 
-      label: "Discord", 
-      url: "#", 
-      color: "#5865F2",
-      handle: "ideajam.community"
     }
   ];
 

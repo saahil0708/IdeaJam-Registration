@@ -7,7 +7,7 @@ const PrizesSection = () => {
     {
       rank: "1st",
       title: "Grand Prize",
-      amount: "₹25,000",
+      amount: "₹12,000",
       icon: Trophy,
       color: "#FFD700",
       perks: ["Cash Prize", "Certificates", "Mentorship Program", "Internship Opportunity"],
@@ -17,7 +17,7 @@ const PrizesSection = () => {
     {
       rank: "2nd",
       title: "Runner Up",
-      amount: "₹15,000",
+      amount: "₹8,000",
       icon: Award,
       color: "#C0C0C0",
       perks: ["Cash Prize", "Certificates", "Mentorship Program", "Recognition"],
@@ -27,7 +27,7 @@ const PrizesSection = () => {
     {
       rank: "3rd",
       title: "Second Runner Up",
-      amount: "₹10,000",
+      amount: "₹5,000",
       icon: Star,
       color: "#CD7F32",
       perks: ["Cash Prize", "Certificates", "Mentorship Program", "Goodies"],
@@ -189,7 +189,7 @@ const PrizesSection = () => {
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Compete for amazing prizes totaling <span className="font-semibold text-white">₹50,000+</span> plus exclusive opportunities and recognition!
+            Compete for amazing prizes totaling <span className="font-semibold text-white">₹25,000+</span> plus exclusive opportunities and recognition!
           </motion.p>
         </motion.div>
 

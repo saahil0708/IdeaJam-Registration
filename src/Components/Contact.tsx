@@ -5,6 +5,14 @@ import GlassCard from './Glasscard';
 const ContactSection = () => {
   const organizers = [
     {
+      name: "TANIYA SINGH",
+      role: "Coordinator",
+      email: "mike.chen@college.edu",
+      phone: "+91 98765 43212",
+      avatar: "TS",
+      availability: "Tue-Thu, 9AM-4PM"
+    },
+    {
       name: "SAAHIL",
       role: "Lead Organizer",
       email: "saahil.ind.dgp@gmail.com",
@@ -19,15 +27,8 @@ const ContactSection = () => {
       phone: "+91 98765 43211",
       avatar: "KS",
       availability: "Mon-Wed, 1PM-8PM"
-    },
-    {
-      name: "TANIYA SINGH",
-      role: "Registration Head",
-      email: "mike.chen@college.edu",
-      phone: "+91 98765 43212",
-      avatar: "TS",
-      availability: "Tue-Thu, 9AM-4PM"
     }
+    
   ];
 
   const socialLinks = [

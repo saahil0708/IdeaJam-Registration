@@ -1,53 +1,101 @@
-import { motion } from 'framer-motion';
+"use client";
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-const FloatingParticles = () => {
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden -z-5">
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-[#1cb683] rounded-full opacity-30"
-          animate={{
-            x: [0, Math.random() * 100, 0],
-            y: [0, Math.random() * 100, Math.random() * -100, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: Math.random() * 10 + 10,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-        />
-      ))}
-      
-      {/* Larger floating elements */}
-      {[...Array(5)].map((_, i) => (
-        <motion.div
-          key={`large-${i}`}
-          className="absolute w-3 h-3 bg-[#1cb683] rounded-full opacity-20 blur-sm"
-          animate={{
-            x: [0, Math.random() * 200 - 100],
-            y: [0, Math.random() * 200 - 100],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: Math.random() * 20 + 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-        />
-      ))}
-    </div>
-  );
+interface ParticleProps {
+  count?: number;
+  color?: string;
+}
+
+const ParticleBackground: React.FC<ParticleProps> = ({
+  count = 1500,
+  color = "#1cb863",
+}) => {
+  const mountRef = useRef<HTMLDivElement | null>(null);
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 400;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Particles
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 800;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 800;
+    }
+
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+    const material = new THREE.PointsMaterial({
+      color: new THREE.Color(color),
+      size: 2,
+      transparent: true,
+      opacity: 0.8,
+    });
+
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    // Mouse movement
+    let mouseX = 0;
+    let mouseY = 0;
+    const onMouseMove = (event: MouseEvent) => {
+      mouseX = event.clientX - window.innerWidth / 2;
+      mouseY = event.clientY - window.innerHeight / 2;
+    };
+    window.addEventListener("mousemove", onMouseMove);
+
+    // Resize
+    const onResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener("resize", onResize);
+
+    // Animation
+    const animate = () => {
+      animationRef.current = requestAnimationFrame(animate);
+
+      points.rotation.x += 0.0005;
+      points.rotation.y += 0.0005;
+
+      camera.position.x += (mouseX * 0.002 - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY * 0.002 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    // Cleanup
+    return () => {
+      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("resize", onResize);
+      mountRef.current?.removeChild(renderer.domElement);
+    };
+  }, [count, color]);
+
+  return <div ref={mountRef} style={{ position: "fixed", inset: 0, zIndex: -1 }} />;
 };
 
-export default FloatingParticles;
+export default ParticleBackground;

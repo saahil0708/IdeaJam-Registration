@@ -790,76 +790,77 @@ const IdeaJamRegistration = () => {
           </motion.div>
 
           {/* Information Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <GlassCard className="p-6 border border-[#1cb683]/30">
-              <div className="flex items-center gap-3 mb-4">
-                <FiInfo className="w-6 h-6 text-[#1cb683]" />
-                <h3 className="text-xl font-bold">Important Information</h3>
-              </div>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start gap-2">
-                  <FiClock className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Registration Deadline: March 10, 2025</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <FiCalendar className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Event Date: March 15-17, 2025</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <FiUsers className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Team Size: 1-6 members (all from same institution)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <FiAward className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Prizes worth ₹50,000+</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <FiShield className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Winning teams qualify for Smart India Hackathon</span>
-                </li>
-              </ul>
-            </GlassCard>
+<motion.div
+  initial={{ opacity: 0, x: 20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.5, delay: 0.2 }}
+  className="space-y-6"
+>
+  <GlassCard className="p-6 border border-[#1cb683]/30">
+    <div className="flex items-center gap-3 mb-4">
+      <FiInfo className="w-6 h-6 text-[#1cb683]" />
+      <h3 className="text-xl font-bold">Rules & Regulations (SIH Guidelines)</h3>
+    </div>
+    <ul className="space-y-3 text-gray-300">
+      <li className="flex items-start gap-2">
+        <FiClock className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>All submissions must strictly follow Smart India Hackathon (SIH) guidelines.</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <FiCalendar className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Ideas must align with officially released SIH problem statements.</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <FiUsers className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Team Size: 1-6 members (all from the same institution).</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <FiAward className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Originality is mandatory — plagiarism will lead to disqualification.</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <FiShield className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Top winners may be nominated to represent in Smart India Hackathon.</span>
+      </li>
+    </ul>
+  </GlassCard>
 
-            <GlassCard className="p-6 border border-[#1cb683]/30">
-              <div className="flex items-center gap-3 mb-4">
-                <FiBriefcase className="w-6 h-6 text-[#1cb683]" />
-                <h3 className="text-xl font-bold">What You Need</h3>
-              </div>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start gap-2">
-                  <FiUser className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Basic information about all team members</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <FiLink className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Link to your presentation (PPT/PDF)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <FiUpload className="mt-1 text-[#1cb683] flex-shrink-0" />
-                  <span>Optional: Demo video link (max 5 minutes)</span>
-                </li>
-              </ul>
-            </GlassCard>
+  <GlassCard className="p-6 border border-[#1cb683]/30">
+    <div className="flex items-center gap-3 mb-4">
+      <FiBriefcase className="w-6 h-6 text-[#1cb683]" />
+      <h3 className="text-xl font-bold">What You Need</h3>
+    </div>
+    <ul className="space-y-3 text-gray-300">
+      <li className="flex items-start gap-2">
+        <FiUser className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Details of all team members including institution name.</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <FiLink className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Link to your SIH-aligned idea presentation (PPT/PDF).</span>
+      </li>
+      <li className="flex items-start gap-2">
+        <FiUpload className="mt-1 text-[#1cb683] flex-shrink-0" />
+        <span>Optional: Demo video link (max 5 minutes, prototype demonstration).</span>
+      </li>
+    </ul>
+  </GlassCard>
 
-            <GlassCard className="p-6 border border-[#1cb683]/30">
-              <div className="flex items-center gap-3 mb-4">
-                <FiDollarSign className="w-6 h-6 text-[#1cb683]" />
-                <h3 className="text-xl font-bold">Participation Benefits</h3>
-              </div>
-              <ul className="space-y-3 text-gray-300">
-                <li>Networking with industry professionals</li>
-                <li>Mentorship from tech experts</li>
-                <li>Chance to win cash prizes and internships</li>
-                <li>Certificate of participation for all attendees</li>
-                <li>Opportunity to represent at national level (SIH)</li>
-              </ul>
-            </GlassCard>
-          </motion.div>
+  <GlassCard className="p-6 border border-[#1cb683]/30">
+    <div className="flex items-center gap-3 mb-4">
+      <FiDollarSign className="w-6 h-6 text-[#1cb683]" />
+      <h3 className="text-xl font-bold">Participation Benefits</h3>
+    </div>
+    <ul className="space-y-3 text-gray-300">
+      <li>Networking with industry professionals and mentors</li>
+      <li>Guidance from SIH experts for idea refinement</li>
+      <li>Chance to win cash prizes worth ₹25,000</li>
+      <li>Certificate of participation for all attendees</li>
+      <li>Opportunity to represent your institution at SIH</li>
+    </ul>
+  </GlassCard>
+</motion.div>
+
         </div>
       </div>
 

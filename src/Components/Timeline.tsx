@@ -16,33 +16,30 @@ const TimelineSection = () => {
   const timelineEvents = [
     {
       round: "Round 1",
-      date: "March 15",
+      date: "--/--",
       time: "9:00 AM",
       title: "Preliminary Round",
       description: "Initial submissions and basic evaluation of projects",
       icon: Code,
-      status: "highlight",
-      duration: "24 hours"
+      status: "highlight"
     },
     {
       round: "Round 2",
-      date: "March 16",
+      date: "--/--",
       time: "9:00 AM",
       title: "Semi-Finals",
       description: "Shortlisted teams present their progress to judges",
       icon: Mic,
-      status: "highlight",
-      duration: "6 hours"
+      status: "highlight"
     },
     {
       round: "Round 3",
-      date: "March 17",
+      date: "--/--",
       time: "2:00 PM",
       title: "Final Presentations",
       description: "Top teams compete for the top prizes",
       icon: Award,
-      status: "highlight",
-      duration: "4 hours"
+      status: "highlight"
     }
   ];
 
@@ -168,9 +165,7 @@ const TimelineSection = () => {
                               <div className="text-gray-400 text-sm">{event.time}</div>
                             </div>
                           </div>
-                          <div className="text-xs bg-gray-800 px-2 py-1 rounded">
-                            {event.duration}
-                          </div>
+                          
                         </div>
 
                         <h3 className={`text-xl font-semibold mb-2 ${event.status === 'highlight' ? 'text-[#1cb683]' : 'text-white'}`}>
@@ -204,15 +199,15 @@ const TimelineSection = () => {
           {[
             {
               title: "Main Venue",
-              content: "Tech Innovation Center",
+              content: "C-Block",
               icon: MapPin,
-              highlight: "Building A, Floor 3"
+              highlight: "U-Zone"
             },
             {
               title: "Event Duration",
               content: "3 Days Total",
               icon: Clock,
-              highlight: "March 15-17"
+              highlight: "2-5 September, 2024"
             },
             {
               title: "Participants",

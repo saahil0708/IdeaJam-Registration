@@ -1,21 +1,19 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
-import { Calendar, Users, Trophy, Zap, ChevronDown, Sparkles } from 'lucide-react';
-import { Button } from '@/Components/UI/button';
+import { Calendar, Users, Trophy, Zap, ChevronDown, Sparkles, Award } from 'lucide-react';
 import GlassCard from './Glasscard';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
   const statsRef = useRef(null);
-  
-  // Animated counter effect
+
+  // Animated counter for top teams
   useEffect(() => {
-    const animation = animate(count, 200, { duration: 2, delay: 1.5 });
+    const animation = animate(count, 25, { duration: 2, delay: 1.5 });
     return animation.stop;
   }, []);
 
-  // Floating particles
   const Particle = ({ index }: { index: number }) => {
     const size = Math.random() * 10 + 5;
     return (
@@ -51,14 +49,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      {/* Animated background elements */}
+      {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating particles */}
         {[...Array(20)].map((_, i) => (
           <Particle key={`particle-${i}`} index={i} />
         ))}
-        
-        {/* Glowing blobs */}
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={`blob-${i}`}
@@ -79,75 +74,38 @@ const HeroSection = () => {
             }}
           />
         ))}
-        
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern
-                id="grid-pattern"
-                width="40"
-                height="40"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 40 0 L 0 0 0 40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.5"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-          </svg>
-        </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto text-center">
-        {/* Main title with floating effect */}
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-8"
         >
-          <motion.div
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <h1 className="text-6xl md:text-8xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white via-[#1cb683] to-white bg-clip-text text-transparent">
-                Idea
-              </span>
-              <motion.span 
-                className="text-[#1cb683]"
-                animate={{
-                  textShadow: [
-                    "0 0 10px #1cb683",
-                    "0 0 20px #1cb683",
-                    "0 0 30px #1cb683",
-                    "0 0 10px #1cb683",
-                  ],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                }}
-              >
-                Jam
-              </motion.span>
-            </h1>
-          </motion.div>
-          
+          <h1 className="text-6xl md:text-8xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-[#1cb683] to-white bg-clip-text text-transparent">
+              Ideajam
+            </span>
+            <motion.span
+              className="text-[#1cb683] ml-3"
+              animate={{
+                textShadow: [
+                  "0 0 10px #1cb683",
+                  "0 0 20px #1cb683",
+                  "0 0 30px #1cb683",
+                  "0 0 10px #1cb683",
+                ],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+              }}
+            >
+              2025
+            </motion.span>
+          </h1>
           <motion.div
             className="h-1 bg-gradient-to-r from-transparent via-[#1cb683] to-transparent mx-auto"
             initial={{ width: 0 }}
@@ -156,20 +114,43 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        {/* Subtitle - Fixed text without typewriter effect */}
+        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
+          className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
         >
-          <div className="text-xl md:text-2xl">The Ultimate Innovation Challenge</div>
-          <div className="text-[#1cb683] text-xl md:text-2xl mt-2">
-            Innovation • Collaboration • Excellence
+          <div>From a spark of thought to a wave of change</div>
+          <div className="text-[#1cb683] mt-2">
+            Innovate • Collaborate • Excel
           </div>
         </motion.div>
 
-        {/* Quick stats with scroll-triggered animations */}
+        {/* Interactive content: Prize Pool Breakdown */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-wrap gap-6 justify-center mb-10"
+        >
+          {/* {[
+            { place: "1st Prize", amount: "₹12,000" },
+            { place: "2nd Prize", amount: "₹8,000" },
+            { place: "3rd Prize", amount: "₹5,000" },
+          ].map((prize, idx) => (
+            <GlassCard
+              key={idx}
+              className="px-6 py-4 w-40 text-center hover:scale-105 transition-transform duration-300 group"
+            >
+              <Award className="w-6 h-6 mx-auto mb-2 text-[#1cb683] group-hover:scale-125 transition-transform duration-300" />
+              <div className="font-bold text-[#1cb683]">{prize.place}</div>
+              <div className="text-gray-300">{prize.amount}</div>
+            </GlassCard>
+          ))} */}
+        </motion.div>
+
+        {/* Quick stats */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 30 }}
@@ -179,10 +160,10 @@ const HeroSection = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-7 mb-12"
         >
           {[
-            { icon: Calendar, label: "48 Hours", value: "Duration" },
-            { icon: Users, label: <motion.span>{rounded}</motion.span>, value: "Participants" },
-            { icon: Trophy, label: "₹50,000", value: "Prize Pool" },
-            { icon: Zap, label: "10+", value: "Themes" },
+            { icon: Trophy, label: "₹25,000", value: "Prize Pool" },
+            { icon: Users, label: <motion.span>{rounded}</motion.span>, value: "Top Teams" },
+            { icon: Zap, label: "3", value: "Rounds" },
+            { icon: Calendar, label: "SIH Theme", value: "Aligned" },
           ].map((stat, index) => (
             <motion.div
               key={index}
@@ -191,10 +172,7 @@ const HeroSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
             >
-              <GlassCard 
-                className="p-6 text-center group transition-transform duration-300 relative overflow-hidden"
-                // whileHover={{ boxShadow: "0 0 20px rgba(28, 182, 131, 0.5)" }}
-              >
+              <GlassCard className="p-6 text-center group transition-transform duration-300 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#1cb683] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 <stat.icon className="w-8 h-8 text-[#1cb683] mx-auto mb-2 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_#1cb683] transition-all duration-300" />
                 <div className="text-2xl font-bold text-[#1cb683]">{stat.label}</div>
@@ -205,84 +183,25 @@ const HeroSection = () => {
           ))}
         </motion.div>
 
-        {/* CTA Buttons with hover effects */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              className="px-8 py-4 text-lg font-semibold bg-[#1cb683] hover:bg-[#16a076] shadow-lg hover:shadow-[#1cb683]/50 transition-all duration-300 relative overflow-hidden group"
-            >
-              <span className="relative z-10">Register Now</span>
-              <motion.span
-                className="absolute inset-0 bg-gradient-to-r from-[#1cb683] to-[#2dd4a0] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "0%" }}
-                transition={{ duration: 0.5 }}
-              />
-            </Button>
-          </motion.div>
-          
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              variant="outline"
-              className="px-8 py-4 text-lg font-semibold border-[#1cb683] text-[#1cb683] hover:bg-[#1cb683]/10 hover:shadow-[#1cb683]/30 transition-all duration-300 relative group"
-            >
-              <span className="relative z-10">Learn More</span>
-              <span className="absolute inset-0 bg-[#1cb683]/5 rounded-md scale-90 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-            </Button>
-          </motion.div>
-        </motion.div> */}
-
-        {/* Event date badge with pulse effect */}
+        {/* Badge WITHOUT date */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-12"
+          className="mt-10"
         >
-          {/* <motion.div
-            animate={{
-              scale: [1, 1.05, 1],
-              boxShadow: [
-                "0 0 0 rgba(28, 182, 131, 0)",
-                "0 0 20px rgba(28, 182, 131, 0.3)",
-                "0 0 0 rgba(28, 182, 131, 0)",
-              ],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-            }}
-          > */}
-            <GlassCard className="inline-block px-6 py-3">
-              <span className="text-[#1cb683] font-semibold flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                March 15-17, 2025
-              </span>
-            </GlassCard>
-          {/* </motion.div> */}
+          <GlassCard className="inline-block px-6 py-3">
+            <span className="text-[#1cb683] font-semibold flex items-center gap-2">
+              -- / -- / ----
+            </span>
+          </GlassCard>
         </motion.div>
-        
+
         {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-          }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
           <ChevronDown className="w-8 h-8 text-[#1cb683] animate-pulse" />
         </motion.div>

@@ -245,9 +245,12 @@ const IdeaJamRegistration = () => {
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
         <div className="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full bg-[#1cb683] opacity-10 blur-3xl"></div>
+        
       </div>
+      
 
       <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 z-10">
+        
         {/* Registration Form Section */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}

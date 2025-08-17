@@ -5,6 +5,14 @@ import GlassCard from './Glasscard';
 const ContactSection = () => {
   const organizers = [
     {
+      name: "YAASHITA",
+      role: "Technical Coordinator",
+      email: "sarah.kim@college.edu",
+      phone: "+91 98765 43211",
+      avatar: "Y",
+      availability: "Mon-Wed, 1PM-8PM"
+    },
+    {
       name: "SHAGUN",
       role: "Graphics Coordinator",
       email: "saahil.ind.dgp@gmail.com",
@@ -13,8 +21,8 @@ const ContactSection = () => {
       availability: "Mon-Fri, 10AM-6PM"
     },
     {
-      name: "YAASHITA",
-      role: "Technical Coordinator",
+      name: "NEHA",
+      role: "Graphics Coordinator",
       email: "sarah.kim@college.edu",
       phone: "+91 98765 43211",
       avatar: "Y",

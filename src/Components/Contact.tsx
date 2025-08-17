@@ -5,19 +5,19 @@ import GlassCard from './Glasscard';
 const ContactSection = () => {
   const organizers = [
     {
-      name: "SAAHIL",
-      role: "Lead Organizer",
+      name: "SHAGUN",
+      role: "Graphics Coordinator",
       email: "saahil.ind.dgp@gmail.com",
       phone: "+91 94741 56798",
       avatar: "S",
       availability: "Mon-Fri, 10AM-6PM"
     },
     {
-      name: "KSHITIJ RAJ",
+      name: "YAASHITA",
       role: "Technical Coordinator",
       email: "sarah.kim@college.edu",
       phone: "+91 98765 43211",
-      avatar: "KS",
+      avatar: "Y",
       availability: "Mon-Wed, 1PM-8PM"
     }
     
@@ -200,7 +200,7 @@ const ContactSection = () => {
                           {organizer.avatar}
                         </div>
                         <div className="absolute -bottom-1 -right-1 bg-[#1cb683] text-white text-xs px-2 py-0.5 rounded-full">
-                          {index === 0 ? "Lead" : "Team"}
+                          {index === 0 ? "Team" : "Team"}
                         </div>
                       </div>
                       <div className="flex-1">

@@ -11,8 +11,6 @@ import {
   Checkbox,
   FormControlLabel,
   Typography,
-  IconButton,
-  Tooltip,
   Snackbar,
   Alert,
 } from '@mui/material';
@@ -63,11 +61,11 @@ const IdeaJamRegistration = () => {
     leaderEmail: '',
     contactNumber: '',
     department: '',
-    teamSize: '1',
+    teamSize: '6',
     description: '',
     pptLink: '',
     terms: false,
-    teamMembers: []
+    teamMembers: Array(5).fill(0).map(() => ({ name: '', email: '' })) // <-- FIXED: unique objects
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
@@ -76,29 +74,14 @@ const IdeaJamRegistration = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const size = parseInt(formData.teamSize);
-    if (size > 1) {
-      const neededMembers = size - 1;
-      const currentMembers = formData.teamMembers.length;
-
-      if (currentMembers < neededMembers) {
-        const newMembers = [...formData.teamMembers];
-        for (let i = currentMembers; i < neededMembers; i++) {
-          newMembers.push({ name: '', email: '' });
-        }
-        setFormData(prev => ({ ...prev, teamMembers: newMembers }));
-      } else if (currentMembers > neededMembers) {
-        setFormData(prev => ({
-          ...prev,
-          teamMembers: prev.teamMembers.slice(0, neededMembers)
-        }));
-      }
-    } else {
-      if (formData.teamMembers.length > 0) {
-        setFormData(prev => ({ ...prev, teamMembers: [] }));
-      }
+    // Always keep 5 unique members
+    if (formData.teamMembers.length !== 5) {
+      setFormData(prev => ({
+        ...prev,
+        teamMembers: Array(5).fill(0).map(() => ({ name: '', email: '' })) // <-- FIXED
+      }));
     }
-  }, [formData.teamSize]);
+  }, [formData.teamMembers.length]);
 
   const validateField = (name: string, value: string) => {
     let error = '';
@@ -235,11 +218,11 @@ const IdeaJamRegistration = () => {
           leaderEmail: '',
           contactNumber: '',
           department: '',
-          teamSize: '1',
+          teamSize: '6',
           description: '',
           pptLink: '',
           terms: false,
-          teamMembers: []
+          teamMembers: Array(5).fill(0).map(() => ({ name: '', email: '' })) // <-- FIXED
         }); // <-- Reset form fields here
       } catch (error) {
         setErrorMsg('Registration failed. Please try again.');
@@ -492,49 +475,7 @@ const IdeaJamRegistration = () => {
                   }}
                 />
 
-                <FormControl fullWidth>
-                  <InputLabel sx={{
-                    color: 'white',
-                    fontFamily: 'Outfit, sans-serif',
-                    '&.Mui-focused': {
-                      color: 'white',
-                    },
-                  }}>
-                    Team Size
-                  </InputLabel>
-                  <Select
-                    required
-                    label="Team Size"
-                    name="teamSize"
-                    value={formData.teamSize}
-                    onChange={handleChange}
-                    sx={{
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#374151',
-                      },
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#1cb683',
-                      },
-                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#1cb683',
-                      },
-                      color: 'white',
-                      borderRadius: '0.45rem',
-                      backgroundColor: 'rgba(31, 41, 55, 0.5)',
-                      fontFamily: 'Outfit, sans-serif',
-                      '& .MuiSelect-icon': {
-                        color: 'white',
-                      }
-                    }}
-                  >
-                    <MenuItem value="1" className='font-[Outfit]'>Solo (1)</MenuItem>
-                    <MenuItem value="2" className='font-[Outfit]'>2 Members</MenuItem>
-                    <MenuItem value="3" className='font-[Outfit]'>3 Members</MenuItem>
-                    <MenuItem value="4" className='font-[Outfit]'>4 Members</MenuItem>
-                    <MenuItem value="5" className='font-[Outfit]'>5 Members</MenuItem>
-                    <MenuItem value="6" className='font-[Outfit]'>6 Members</MenuItem>
-                  </Select>
-                </FormControl>
+                {/* Team Size is always 6, so this block is removed */}
               </div>
 
               {/* Dynamic team member fields */}
@@ -549,28 +490,14 @@ const IdeaJamRegistration = () => {
                     className="space-y-4"
                   >
                     <div className="flex justify-between items-center mt-4">
-                      <Typography variant="subtitle2" className="text-[#1cb683]">
-                        Team Member {index + 1}
+                      <Typography variant="subtitle2" className="text-[#1cb683] font-[Outfit]">
+                        Team Member {index + 2} {/* Start from 2 since leader is 1 */}
                       </Typography>
-                      {index === formData.teamMembers.length - 1 && (
-                        <Tooltip title="Remove member">
-                          <IconButton
-                            size="small"
-                            onClick={() => setFormData(prev => ({
-                              ...prev,
-                              teamSize: (parseInt(prev.teamSize) - 1).toString()
-                            }))}
-                          >
-                            <FiX className="text-red-400" />
-                          </IconButton>
-                        </Tooltip>
-                      )}
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <TextField
                         fullWidth
-                        label={`Member ${index + 1} Name`}
+                        label={`Member ${index + 2} Name`}
                         value={member.name}
                         onChange={(e) => handleTeamMemberChange(index, 'name', e.target.value)}
                         variant="outlined"
@@ -601,7 +528,7 @@ const IdeaJamRegistration = () => {
 
                       <TextField
                         fullWidth
-                        label={`Member ${index + 1} Email`}
+                        label={`Member ${index + 2} Email`}
                         type="email"
                         value={member.email}
                         onChange={(e) => handleTeamMemberChange(index, 'email', e.target.value)}
@@ -635,34 +562,7 @@ const IdeaJamRegistration = () => {
                 ))}
               </AnimatePresence>
 
-              {parseInt(formData.teamSize) < 6 && (
-                <motion.div
-                  className="flex justify-end"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <Button
-                    variant="outlined"
-                    startIcon={<FiPlus />}
-                    onClick={() => setFormData(prev => ({
-                      ...prev,
-                      teamSize: (parseInt(prev.teamSize) + 1).toString()
-                    }))}
-                    sx={{
-                      color: '#1cb683',
-                      borderColor: '#1cb683',
-                      '&:hover': {
-                        borderColor: '#1cb683',
-                        backgroundColor: 'rgba(28, 182, 131, 0.1)'
-                      },
-                      fontFamily: 'Outfit, sans-serif',
-                      textTransform: 'none',
-                      borderRadius: '0.45rem'
-                    }}
-                  >
-                    Add Member
-                  </Button>
-                </motion.div>
-              )}
+              {/* Remove Add Member button as team size is fixed to 6 */}
 
               <TextField
                 fullWidth

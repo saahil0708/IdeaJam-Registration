@@ -362,8 +362,8 @@ const IdeaJamRegistration = () => {
                     <MenuItem value="CSE" className='font-[Outfit]'>Computer Science (CSE)</MenuItem>
                     <MenuItem value="The Uniques" className='font-[Outfit]'>The Uniques</MenuItem>
                     <MenuItem value="Super 60" className='font-[Outfit]'>Super 60</MenuItem>
-                    <MenuItem value="BBA" className='font-[Outfit]'>BBA</MenuItem>
-                    <MenuItem value="MBA" className='font-[Outfit]'>MBA</MenuItem>
+                    {/* <MenuItem value="BBA" className='font-[Outfit]'>BBA</MenuItem>
+                    <MenuItem value="MBA" className='font-[Outfit]'>MBA</MenuItem> */}
                     <MenuItem value="ME" className='font-[Outfit]'>Mechanical Engineering (ME)</MenuItem>
                     <MenuItem value="ECE" className='font-[Outfit]'>Electronics (ECE)</MenuItem>
                     <MenuItem value="CE" className='font-[Outfit]'>Civil Engineering (CE)</MenuItem>

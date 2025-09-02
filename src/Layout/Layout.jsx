@@ -31,8 +31,6 @@ function Layout() {
       {/* Background gradient */}
       <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black -z-10" />
       
-      
-      
       {/* Main content */}
       <main className="relative z-10">
         <HeroSection />

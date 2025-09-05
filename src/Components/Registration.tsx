@@ -372,6 +372,7 @@ const IdeaJamRegistration = () => {
                     <MenuItem value="MCA" className='font-[Outfit]'>MCA</MenuItem>
                     <MenuItem value="MBA" className='font-[Outfit]'>MBA</MenuItem>
                     <MenuItem value="LLB" className='font-[Outfit]'>LLB</MenuItem>
+                    <MenuItem value="M.COM" className='font-[Outfit]'>M.COM</MenuItem>
                     <MenuItem value="Paramedical" className='font-[Outfit]'>Paramedical</MenuItem>
                   </Select>
                 </FormControl>

@@ -55,6 +55,9 @@ interface FormData {
 }
 
 const IdeaJamRegistration = () => {
+  // Registration is now closed
+  const [registrationClosed, setRegistrationClosed] = useState(true);
+
   const [formData, setFormData] = useState<FormData>({
     teamName: '',
     leaderName: '',
@@ -169,6 +172,13 @@ const IdeaJamRegistration = () => {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if registration is closed
+    if (registrationClosed) {
+      setErrorMsg('Registration for IdeaJam 2.0 is now closed. Thank you for your interest!');
+      return;
+    }
+
     setLoading(true);
 
     let isValid = true;
@@ -252,7 +262,7 @@ const IdeaJamRegistration = () => {
 
       <div className="relative max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -268,9 +278,34 @@ const IdeaJamRegistration = () => {
             transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           />
+
+          {registrationClosed && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 mb-6 max-w-2xl mx-auto"
+            >
+              <div className="flex items-center justify-center gap-2 text-red-400">
+                <FiX className="w-5 h-5" />
+                <span className="font-semibold text-lg">Registration Closed</span>
+              </div>
+              <p className="text-red-300 mt-2">
+                Thank you for your interest in IdeaJam 2.0! Registration has officially closed.
+              </p>
+            </motion.div>
+          )}
+
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Register your team for the most exciting hackathon of the year! 
-            <br />Showcase your innovative ideas and compete for amazing prizes.
+            {registrationClosed
+              ? "Registration for the most exciting hackathon of the year has ended."
+              : "Register your team for the most exciting hackathon of the year!"
+            }
+            <br />
+            {registrationClosed
+              ? "Stay tuned for updates about the event!"
+              : "Showcase your innovative ideas and compete for amazing prizes."
+            }
           </p>
         </motion.div>
 
@@ -280,8 +315,12 @@ const IdeaJamRegistration = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-800 bg-opacity-50 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-700 shadow-xl"
+            className={`bg-gray-800 bg-opacity-50 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-gray-700 shadow-xl relative ${registrationClosed ? 'opacity-75' : ''
+              }`}
           >
+            {registrationClosed && (
+              <div className="absolute inset-0 bg-gray-900/30 backdrop-blur-sm rounded-2xl z-10 pointer-events-none" />
+            )}
             <div className="mb-6">
               <h2 className="text-2xl font-bold mb-2 text-[#1cb683]">Team Registration Form</h2>
               <p className="text-gray-400">Fill in all required details to secure your spot</p>
@@ -297,6 +336,7 @@ const IdeaJamRegistration = () => {
                   value={formData.teamName}
                   onChange={handleChange}
                   variant="outlined"
+                  disabled={registrationClosed}
                   error={!!errors.teamName}
                   helperText={errors.teamName || ' '}
                   sx={{
@@ -338,6 +378,7 @@ const IdeaJamRegistration = () => {
                     name="department"
                     value={formData.department}
                     onChange={handleChange}
+                    disabled={registrationClosed}
                     error={!!errors.department}
                     sx={{
                       '& .MuiOutlinedInput-notchedOutline': {
@@ -387,6 +428,7 @@ const IdeaJamRegistration = () => {
                   value={formData.leaderName}
                   onChange={handleChange}
                   variant="outlined"
+                  disabled={registrationClosed}
                   error={!!errors.leaderName}
                   helperText={errors.leaderName || ' '}
                   sx={{
@@ -421,6 +463,7 @@ const IdeaJamRegistration = () => {
                   value={formData.leaderEmail}
                   onChange={handleChange}
                   variant="outlined"
+                  disabled={registrationClosed}
                   error={!!errors.leaderEmail}
                   helperText={errors.leaderEmail || ' '}
                   sx={{
@@ -456,6 +499,7 @@ const IdeaJamRegistration = () => {
                   value={formData.contactNumber}
                   onChange={handleChange}
                   variant="outlined"
+                  disabled={registrationClosed}
                   error={!!errors.contactNumber}
                   helperText={errors.contactNumber || ' '}
                   sx={{
@@ -507,6 +551,7 @@ const IdeaJamRegistration = () => {
                         value={member.name}
                         onChange={(e) => handleTeamMemberChange(index, 'name', e.target.value)}
                         variant="outlined"
+                        disabled={registrationClosed}
                         error={!!errors[`teamMember${index}name`]}
                         helperText={errors[`teamMember${index}name`] || ' '}
                         sx={{
@@ -539,6 +584,7 @@ const IdeaJamRegistration = () => {
                         value={member.email}
                         onChange={(e) => handleTeamMemberChange(index, 'email', e.target.value)}
                         variant="outlined"
+                        disabled={registrationClosed}
                         error={!!errors[`teamMember${index}email`]}
                         helperText={errors[`teamMember${index}email`] || ' '}
                         sx={{
@@ -580,6 +626,7 @@ const IdeaJamRegistration = () => {
                 required
                 multiline
                 rows={4}
+                disabled={registrationClosed}
                 error={!!errors.description}
                 helperText={errors.description || ' '}
                 inputProps={{ maxLength: 200 }}
@@ -607,7 +654,7 @@ const IdeaJamRegistration = () => {
               />
 
               <div className="space-y-2">
-                <Typography variant="body2" className="text-gray-300 flex items-center font-[Outfit]" sx={{fontFamily: "Outfit"}}>
+                <Typography variant="body2" className="text-gray-300 flex items-center font-[Outfit]" sx={{ fontFamily: "Outfit" }}>
                   <FiInfo className="mr-2 text-[#1cb683]" />Upload your presentation to Google Drive/Dropbox and share the link
                 </Typography>
                 <TextField
@@ -617,6 +664,7 @@ const IdeaJamRegistration = () => {
                   name="pptLink"
                   value={formData.pptLink}
                   onChange={handleChange}
+                  disabled={registrationClosed}
                   error={!!errors.pptLink}
                   helperText={errors.pptLink || ' '}
                   sx={{
@@ -651,6 +699,7 @@ const IdeaJamRegistration = () => {
                       checked={formData.terms}
                       onChange={handleChange}
                       required
+                      disabled={registrationClosed}
                       sx={{
                         color: '#1cb683',
                         '&.Mui-checked': {
@@ -668,26 +717,37 @@ const IdeaJamRegistration = () => {
 
                 <div className="flex justify-center">
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: registrationClosed ? 1 : 1.02 }}
+                    whileTap={{ scale: registrationClosed ? 1 : 0.98 }}
                     className="w-full md:w-1/2"
                   >
                     <Button
                       type="submit"
                       variant="contained"
-                      disabled={!isFormValid()}
-                      startIcon={<SaveIcon />}
+                      disabled={registrationClosed || !isFormValid()}
+                      startIcon={registrationClosed ? <FiX /> : <SaveIcon />}
                       sx={{
                         width: '100%',
                         py: 1,
                         fontFamily: 'Outfit, sans-serif',
-                        bgcolor: '#1cb683',
-                        '&:hover': { bgcolor: '#16a076' },
+                        bgcolor: registrationClosed ? '#6b7280' : '#1cb683',
+                        '&:hover': {
+                          bgcolor: registrationClosed ? '#6b7280' : '#16a076'
+                        },
+                        '&:disabled': {
+                          bgcolor: registrationClosed ? '#6b7280' : '#374151',
+                          color: registrationClosed ? '#d1d5db' : '#9ca3af'
+                        },
                         fontSize: '1rem',
                         fontWeight: 'bold'
                       }}
                     >
-                      {loading ? 'Registering...' : 'Register'}
+                      {registrationClosed
+                        ? 'Registration Closed'
+                        : loading
+                          ? 'Registering...'
+                          : 'Register'
+                      }
                     </Button>
                   </motion.div>
                 </div>
@@ -696,76 +756,76 @@ const IdeaJamRegistration = () => {
           </motion.div>
 
           {/* Information Section */}
-<motion.div
-  initial={{ opacity: 0, x: 20 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.5, delay: 0.2 }}
-  className="space-y-6"
->
-  <GlassCard className="p-6 border border-[#1cb683]/30">
-    <div className="flex items-center gap-3 mb-4">
-      <FiInfo className="w-6 h-6 text-[#1cb683]" />
-      <h3 className="text-xl font-bold">Rules & Regulations (SIH Guidelines)</h3>
-    </div>
-    <ul className="space-y-3 text-gray-300">
-      <li className="flex items-start gap-2">
-        <FiClock className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>All submissions must strictly follow Smart India Hackathon (SIH) guidelines.</span>
-      </li>
-      <li className="flex items-start gap-2">
-        <FiCalendar className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Ideas must align with officially released SIH problem statements.</span>
-      </li>
-      <li className="flex items-start gap-2">
-        <FiUsers className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Team Size: 1-6 members (all from the same institution).</span>
-      </li>
-      <li className="flex items-start gap-2">
-        <FiAward className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Originality is mandatory — plagiarism will lead to disqualification.</span>
-      </li>
-      <li className="flex items-start gap-2">
-        <FiShield className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Top winners may be nominated to represent in Smart India Hackathon.</span>
-      </li>
-    </ul>
-  </GlassCard>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <GlassCard className="p-6 border border-[#1cb683]/30">
+              <div className="flex items-center gap-3 mb-4">
+                <FiInfo className="w-6 h-6 text-[#1cb683]" />
+                <h3 className="text-xl font-bold">Rules & Regulations (SIH Guidelines)</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2">
+                  <FiClock className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>All submissions must strictly follow Smart India Hackathon (SIH) guidelines.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiCalendar className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Ideas must align with officially released SIH problem statements.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiUsers className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Team Size: 1-6 members (all from the same institution).</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiAward className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Originality is mandatory — plagiarism will lead to disqualification.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiShield className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Top winners may be nominated to represent in Smart India Hackathon.</span>
+                </li>
+              </ul>
+            </GlassCard>
 
-  <GlassCard className="p-6 border border-[#1cb683]/30">
-    <div className="flex items-center gap-3 mb-4">
-      <FiBriefcase className="w-6 h-6 text-[#1cb683]" />
-      <h3 className="text-xl font-bold">What You Need</h3>
-    </div>
-    <ul className="space-y-3 text-gray-300">
-      <li className="flex items-start gap-2">
-        <FiUser className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Details of all team members including institution name.</span>
-      </li>
-      <li className="flex items-start gap-2">
-        <FiLink className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Link to your SIH-aligned idea presentation (PPT/PDF).</span>
-      </li>
-      <li className="flex items-start gap-2">
-        <FiUpload className="mt-1 text-[#1cb683] flex-shrink-0" />
-        <span>Optional: Demo video link (max 5 minutes, prototype demonstration).</span>
-      </li>
-    </ul>
-  </GlassCard>
+            <GlassCard className="p-6 border border-[#1cb683]/30">
+              <div className="flex items-center gap-3 mb-4">
+                <FiBriefcase className="w-6 h-6 text-[#1cb683]" />
+                <h3 className="text-xl font-bold">What You Need</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2">
+                  <FiUser className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Details of all team members including institution name.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiLink className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Link to your SIH-aligned idea presentation (PPT/PDF).</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <FiUpload className="mt-1 text-[#1cb683] flex-shrink-0" />
+                  <span>Optional: Demo video link (max 5 minutes, prototype demonstration).</span>
+                </li>
+              </ul>
+            </GlassCard>
 
-  <GlassCard className="p-6 border border-[#1cb683]/30">
-    <div className="flex items-center gap-3 mb-4">
-      <FiDollarSign className="w-6 h-6 text-[#1cb683]" />
-      <h3 className="text-xl font-bold">Participation Benefits</h3>
-    </div>
-    <ul className="space-y-3 text-gray-300">
-      <li>Networking with industry professionals and mentors</li>
-      <li>Guidance from SIH experts for idea refinement</li>
-      <li>Chance to win cash prizes worth ₹25,000</li>
-      <li>Certificate of participation for all attendees</li>
-      <li>Opportunity to represent your institution at SIH</li>
-    </ul>
-  </GlassCard>
-</motion.div>
+            <GlassCard className="p-6 border border-[#1cb683]/30">
+              <div className="flex items-center gap-3 mb-4">
+                <FiDollarSign className="w-6 h-6 text-[#1cb683]" />
+                <h3 className="text-xl font-bold">Participation Benefits</h3>
+              </div>
+              <ul className="space-y-3 text-gray-300">
+                <li>Networking with industry professionals and mentors</li>
+                <li>Guidance from SIH experts for idea refinement</li>
+                <li>Chance to win cash prizes worth ₹25,000</li>
+                <li>Certificate of participation for all attendees</li>
+                <li>Opportunity to represent your institution at SIH</li>
+              </ul>
+            </GlassCard>
+          </motion.div>
 
         </div>
       </div>
